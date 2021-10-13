@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import './fonts/Sugo/Sugo-Pro-Display-Regular-trial.ttf';
-
 
 
 

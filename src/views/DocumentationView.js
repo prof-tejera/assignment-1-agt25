@@ -6,7 +6,7 @@ import DocumentComponent from "../components/documentation/DocumentComponent";
 import Loading from "../components/generic/Loading";
 import Button from "../components/generic/Button";
 
-import MobileScreen from "../components/generic/MobileScreen";
+import MobileScreen from "../components/generic/Device";
 
 const Container = styled.div`
   display: flex;

@@ -1,7 +1,19 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
+
 import BottomNav from "./BottomNav"
 
+const deviceDimensions = {
+    phone: {
+        width: 330,
+        height: 660,
+    }, 
+    tablet: {
+        width: 420,
+        height: 660,
+    }
+};
 
 
 const ScreenWrapper = styled.div`
@@ -14,8 +26,8 @@ const ScreenWrapper = styled.div`
 const Screen = styled.div`
    position: relative;
    background: #1A1A1A;
-   width: 330px;
-   height: 660px;
+   width: ${(props) => props.width}px;
+   height: ${(props) => props.height}px;
    border: 16px ridge #09090A;
    border-radius: 40px;
    -webkit-box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.33); 
@@ -23,7 +35,7 @@ const Screen = styled.div`
 `;
 
 const StatusBar = styled.div`
-    width: 328px;
+    width: ${(props) => props.width}px;
     height: 45px;
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
@@ -73,21 +85,31 @@ const Nav = styled.div`
     position: absolute;
     bottom: 0;
     height: 65px;
-    width: 328px;
+    width: 100%;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
+`;
+
+const BottomNavLinks= styled(BottomNav)`
+    position: relative;
+    top: -100px;
+
+
+
 `;
 
 
 
 
-class MobileScreen extends React.Component {
+class Device extends React.Component {
     render() {
+
+        const type = deviceDimensions[this.props.type]; 
 
         return (
             <>
             <ScreenWrapper>
-                <Screen>
+                <Screen width={type.width} height={type.height}>
                    <StatusBar>
                        <Notch>
                            <Speaker/>
@@ -96,18 +118,28 @@ class MobileScreen extends React.Component {
                    </StatusBar>
                    {this.props.children}
                    <Nav>
+                   <BottomNavLinks>
+
+</BottomNavLinks>
                    </Nav>
                 </Screen>
             </ScreenWrapper>
 
-        
-            <BottomNav>
-
-            </BottomNav>
+            
+            
 
             </>
         );
     }
 }
 
-export default MobileScreen;
+Device.propTypes = {
+    type: PropTypes.oneOf(["phone", "tablet"]),
+}
+
+Device.defaultProps = {
+    type: "phone"
+}
+
+
+export default Device;
