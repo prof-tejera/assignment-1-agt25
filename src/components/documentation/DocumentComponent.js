@@ -23,6 +23,7 @@ const RenderComponent = styled.div`
   padding: 25px;
   display: flex;
   align-items: center;
+  
 `;
 
 const Documentation = styled.table``;

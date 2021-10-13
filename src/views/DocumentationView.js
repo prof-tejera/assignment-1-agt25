@@ -4,6 +4,9 @@ import styled from "styled-components";
 import DocumentComponent from "../components/documentation/DocumentComponent";
 
 import Loading from "../components/generic/Loading";
+import Button from "../components/generic/Button";
+
+import MobileScreen from "../components/generic/MobileScreen";
 
 const Container = styled.div`
   display: flex;
@@ -24,6 +27,32 @@ class Documentation extends React.Component {
           <DocumentComponent
             title="Loading spinner "
             component={<Loading />}
+            propDocs={[
+              {
+                prop: "size",
+                description: "Changes the size of the loading spinner",
+                type: "string",
+                defaultValue: "medium",
+              },
+            ]}
+          />
+
+        <DocumentComponent
+            title="Button "
+            component={<Button />}
+            propDocs={[
+              {
+                prop: "size",
+                description: "Changes the size of the loading spinner",
+                type: "string",
+                defaultValue: "medium",
+              },
+            ]}
+          />
+
+          <DocumentComponent
+            title="Device Screen "
+            component={<MobileScreen />}
             propDocs={[
               {
                 prop: "size",
