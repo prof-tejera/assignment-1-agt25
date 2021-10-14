@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import OperationsCircle from "../../images/operations-circle.svg";
 import Button from "./Button";
+import Input from "./Input";
 
 const Container = styled.div`
     
@@ -80,92 +81,62 @@ const ProgressBar = styled.div`
     
 `;
 
-const AnimatedButton = styled(Button)`
-    :hover {
-        border: 1px solid #1B457929;
-
-    }
-    :active {
-        transform: scale(1.05) translate(0px, 0px);
-    
-    }
-    ::after {
-        
-    
-    z-index: -1;
-    transition: all .5s;
-    }
-    :hover::after {
-        transform: scale(0.5) translate(-1px, 0px);
-        
-    }
-    
-
-`;
-
-const ActionButtonsContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: flex-start;
-    align-content: center;
-    width: 100%;
-    margin: 0 auto;
-    position: relative;
-    top: -7.6rem;
-    
-    
-    
-    
 
 
-`;
+
+
+
 
 
 class OperationsScreen extends React.Component {
-
+    
    
     render() {
-        const tit = "Stopwatch";
+        const type = this.props.type; 
+
+        
         
         return (
             <>
             <Container>
-            <Title>Stopwatch</Title>
-            <TopButtonsContainer>
-                <Button width="75px" height="75px" background="transparent">
-                    {tit === "Stop" ? 
-                        <Button background="#1A1A1A" width="70px" height="70px" 
-                                color="#1C91F2" fontSize="55px" fontWeight={700}>
-                                0 </Button> : null}
-                </Button>
-                <Button width="75px" height="75px" background="#1A1A1A">
-                 {/* Icon status button */}
-                    <Button border="1px dotted #1C91F2" background="#1A1A1A" width="70px" 
-                            height="70px" color="#1C91F2">
-                    </Button>
-                </Button>
-            </TopButtonsContainer>
-            
-            {/* Round timer wrapper and timer */}
-            <RoundTimerWrapper>
-            </RoundTimerWrapper>
-            <Time>
-                01:  03:  26
-            </Time>
-            <ProgressBar>
-                <p>Run</p>
-            </ProgressBar>
-
-            <ActionButtonsContainer>
-                <AnimatedButton outline="2px solid #302F2F" outlineOffset="2px">Reset</AnimatedButton>
-                <AnimatedButton outline="2px solid #142F1B" outlineOffset="2px" background="#142F1B" color="#94D769">New</AnimatedButton>
-
-            </ActionButtonsContainer>
-            </Container>
-
+            <Title>{type}</Title>
+               
           
+          <TopButtonsContainer>
+              <Button width="75px" height="75px" background="transparent">
+                  {type === "Stopwatch" ? 
+                      <Button background="#1A1A1A" width="70px" height="70px" 
+                              color="#1C91F2" fontSize="55px" fontWeight={700}>
+                              0 </Button> : null}
+              </Button>
+              <Button width="75px" height="75px" background="#1A1A1A">
+               {/* Icon status button */}
+                  <Button border="1px dotted #1C91F2" background="#1A1A1A" width="70px" 
+                          height="70px" color="#1C91F2">
+                  </Button>
+              </Button>
+          </TopButtonsContainer>
+          
+          {/* Round timer wrapper and timer */}
+          <RoundTimerWrapper>
+          </RoundTimerWrapper>
+          <Time>
+              01:  03:  26
+          </Time>
+          <ProgressBar>
+              <p>Run</p>
+          </ProgressBar>
+                    
+        
+            
+               
+           
+               
+            
+            
+           
+
+            </Container> 
           
             
             </>

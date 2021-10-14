@@ -15,19 +15,15 @@ align-items: flex-start;
 align-content: center;
 text-align: center;
 
-
   li {
     letter-spacing: -1.6px;
     font-family: Ariel;
     line-height: 15px;
     font-size: 15px;
-    
     width: 60px;
-    
-    
-    
-    
-    
+  }
+  a:hover {
+    color: #458FEB !important;
   }
 
 `;
@@ -36,6 +32,8 @@ const NavLink = styled(Link)`
 
   text-decoration: none;
   color: grey;
+
+  
   
   
 
