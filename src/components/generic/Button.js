@@ -15,6 +15,7 @@ const Button = styled.button`
   padding: 0;
   margin: 0 auto;
   font-family: Open Sans;
+  disabled: ${(props) => props.disabled || "none"};
 
  
   

@@ -92,7 +92,7 @@ class OperationsScreen extends React.Component {
     
    
     render() {
-        const type = this.props.type; 
+        const { type, hours, minutes, seconds } = this.props; 
 
         
         
@@ -121,7 +121,7 @@ class OperationsScreen extends React.Component {
           <RoundTimerWrapper>
           </RoundTimerWrapper>
           <Time>
-              01:  03:  26
+              {hours}: {minutes}: {seconds}
           </Time>
           <ProgressBar>
               <p>Run</p>

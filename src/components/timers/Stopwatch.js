@@ -68,22 +68,36 @@ class Stopwatch extends React.Component {
     hours : "00",
     minutes : "00", 
     seconds : "00",
+    time: "00: 00: 00",
     rounds: "0",
-    actionBtn : "New",
-    timerType : "XY"
+    actionBtn : "Start",
+    actionBtnDisabled: false,
+    timerType : "XY",
+    timerShown : false, 
+    timerInputted: false,
+
     
   };
 
 handleToggle = () => {
     this.setState({toggle: !this.state.toggle, 
-    roundTimer: !this.state.roundTimer })
+    roundTimer: !this.state.roundTimer,
+    timerShown: !this.state.timerShown })
 
 };
+
+handleReset = () => {
+  this.setState({hours: "00", minutes: "00", seconds: "00"});
+}
 
 handleInput = (e) => {
   const num = e.value;
   const id = e.id;
   console.log(`num: ${num}, id: ${id}`);
+
+  if (parseInt(num) > 0) {
+    this.setState({timerInputted: true});
+  }
 
   if (id === "Hour" ) {
     this.setState({hours: num});
@@ -93,12 +107,7 @@ handleInput = (e) => {
     this.setState({seconds: num});
   }
 
-
-  
   this.setState({actionBtn: "Start"});
-  
-
-
 
   
 }
@@ -106,25 +115,29 @@ handleInput = (e) => {
   render() {
     return (
       <div>
+      
       <Device type="phone">
+        
         {this.state.roundTimer ?  
-              <OperationsScreen type="Stopwatch"/>
+              <OperationsScreen type="Stopwatch" hours={this.state.hours} minutes={this.state.minutes}
+              seconds={this.state.seconds}/>
               
   
                 :  
-                
+                <div>
                 <InputContainer>
                 <Input type="Hour" value={this.state.hours} onChange={this.handleInput}/>
                 <Input type="Min" value={this.state.minutes} onChange={this.handleInput}/>
                 <Input type="Sec" value={this.state.seconds} onChange={this.handleInput}/>
                 </InputContainer> 
+                </div>
                 
         }
        
 
             <ActionButtonsContainer>
-                <AnimatedButton outline="2px solid #302F2F" outlineOffset="2px">Reset</AnimatedButton>
-                <AnimatedButton outline="2px solid #142F1B" outlineOffset="2px" background="#142F1B" color="#94D769"
+                <AnimatedButton outline="2px solid #302F2F" outlineOffset="2px" onClick={this.handleReset}>Reset</AnimatedButton>
+                <AnimatedButton disabled={this.state.actionBtnDisabled} outline="2px solid #142F1B" outlineOffset="2px" background="#142F1B" color="#94D769"
                 onClick={this.handleToggle}>{this.state.actionBtn}</AnimatedButton>
             </ActionButtonsContainer>
 
