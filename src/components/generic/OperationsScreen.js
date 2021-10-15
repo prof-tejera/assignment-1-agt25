@@ -2,10 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import OperationsCircle from "../../images/operations-circle.svg";
 import Button from "./Button";
-import Input from "./Input";
+
 
 const Container = styled.div`
-    
     height: 65%;
     width: 100%;
     margin: 0 auto;
@@ -26,14 +25,7 @@ const RoundTimerWrapper = styled.div`
 
 `;
 
-const Title = styled.h1`
-    font-family: Roboto;
-    font-size: 23px;
-    color: white;
-    font-weight: 400;
-    letter-spacing: 1px;
-    margin-top: 6px;
-`;
+
 
 const TopButtonsContainer = styled.div`
     display: flex;
@@ -75,17 +67,9 @@ const ProgressBar = styled.div`
     p {
         font-size: 26px;
         margin: 10px 0 10px 0;
-        
-        
     }
     
 `;
-
-
-
-
-
-
 
 
 class OperationsScreen extends React.Component {
@@ -95,51 +79,55 @@ class OperationsScreen extends React.Component {
         const { type, hours, minutes, seconds } = this.props; 
 
         
-        
         return (
             <>
-            <Container>
-            <Title>{type}</Title>
-               
-          
-          <TopButtonsContainer>
-              <Button width="75px" height="75px" background="transparent">
-                  {type === "Stopwatch" ? 
-                      <Button background="#1A1A1A" width="70px" height="70px" 
-                              color="#1C91F2" fontSize="55px" fontWeight={700}>
-                              0 </Button> : null}
-              </Button>
-              <Button width="75px" height="75px" background="#1A1A1A">
-               {/* Icon status button */}
-                  <Button border="1px dotted #1C91F2" background="#1A1A1A" width="70px" 
-                          height="70px" color="#1C91F2">
-                  </Button>
-              </Button>
-          </TopButtonsContainer>
-          
-          {/* Round timer wrapper and timer */}
-          <RoundTimerWrapper>
-          </RoundTimerWrapper>
-          <Time>
-              {hours}: {minutes}: {seconds}
-          </Time>
-          <ProgressBar>
-              <p>Run</p>
-          </ProgressBar>
-                    
-        
+                <Container>
+                    <h3>{type}</h3>
+                
             
-               
-           
-               
-            
-            
-           
+            {/* Top buttons above the timer */}
+            <TopButtonsContainer>
 
-            </Container> 
-          
+                {/* Conditional 'Rounds' button used by XY and TABATA */}
+                <Button width="75px" 
+                        height="75px" 
+                        background="transparent">
+                        {type === "XY" || type === "Tabata" ? 
+                            <Button background="#1A1A1A" 
+                                    color="#1C91F2" 
+                                    width="70px" 
+                                    height="70px" 
+                                    fontSize="55px" 
+                                    fontWeight={700}> 0 
+                            </Button> : null}
+                </Button>
+
+
+                {/* Icon status button used by all timers */}
+                <Button width="75px" 
+                        height="75px" 
+                        background="#1A1A1A">
+                    <Button border="1px dotted #1C91F2" 
+                            background="#1A1A1A" 
+                            width="70px" 
+                            height="70px" 
+                            color="#1C91F2">
+                    </Button>
+                </Button>
+            </TopButtonsContainer>
             
-            </>
+            {/* Round timer wrapper and timer */}
+            <RoundTimerWrapper/>
+                <Time>
+                    {hours}: {minutes}: {seconds}
+                </Time>
+
+            {/* Progress bar and status value (run or rest) */}
+            <ProgressBar>
+                <p>Run</p>
+            </ProgressBar>
+            </Container>      
+        </>
         );
     }
 }

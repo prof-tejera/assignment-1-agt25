@@ -17,9 +17,6 @@ const Button = styled.button`
   font-family: Open Sans;
   disabled: ${(props) => props.disabled || "none"};
 
- 
-  
- 
 `;
 
 export default Button;

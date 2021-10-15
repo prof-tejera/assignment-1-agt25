@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Stopwatch from "../timers/Stopwatch";
 import { StopwatchFill, HourglassTop, ArrowRepeat, ClockHistory } from 'react-bootstrap-icons';
-
 
 
 const Container = styled.div`
@@ -17,7 +15,7 @@ text-align: center;
 
   li {
     letter-spacing: -1.6px;
-    font-family: Ariel;
+    font-family: Roboto;
     line-height: 15px;
     font-size: 15px;
     width: 60px;
@@ -65,7 +63,7 @@ class BottomNav extends React.Component {
                 </NavLink>
             </li>
             <li>
-              <NavLink to="/">
+              <NavLink to="/Countdown">
               <HourglassTop size={20}/>
                 <div>Countdown
                   </div>
@@ -93,7 +91,7 @@ class BottomNav extends React.Component {
             
           </Route>
           <Route path="/">
-            
+          
            
           </Route>
           <Route path="/">

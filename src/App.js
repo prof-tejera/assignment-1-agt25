@@ -6,11 +6,15 @@ import DocumentationView from "./views/DocumentationView";
 import TimersView from "./views/TimersView";
 
 
+import Back from "./images/back.svg";
+
+
+
 const Container = styled.div`
-  background-image: linear-gradient(to left bottom, 
-                    #f5fdff, #f4fefe, #f4fffc, #f6fff9, 
-                    #f9fff6, #fbfff5, #fdfef4, #fffef3, 
-                    #fffef3, #fffef3, #fffef3, #fffef3);
+background-image: linear-gradient(to left bottom, 
+  #f5fdff, #f4fefe, #f4fffc, #f6fff9, 
+  #f9fff6, #fbfff5, #fdfef4, #fffef3, 
+  #fffef3, #fffef3, #fffef3, #fffef3);
   height: 100vh;
   overflow: auto;
   text-align: center;
@@ -30,6 +34,22 @@ const Container = styled.div`
   };
   nav {
     margin: 0;
+  }
+  h3 {
+    font-family: Roboto;
+    font-size: 23px;
+    color: white;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-top: 9px;
+  } 
+  h2 {
+    font-family: Roboto;
+    font-size: 35px;
+    color: white;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-top: -4px;
   }
 `;
 

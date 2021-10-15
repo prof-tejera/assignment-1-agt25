@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const InputField = styled.input`
-z-index: 1; 
-
+  z-index: 1; 
   height: ${(props) => props.height || "70px"};
   width: ${(props) => props.width || "70px"};
   background-color: ${(props) => props.background || "#302F2F"};
@@ -30,13 +29,6 @@ z-index: 1;
   
 `;
 
-const TimeInput = styled.input
-
-
-
-const Label = styled.p`
-    color: red;
-`;
 
 const InputRow = styled.div`
     flex-grow: 0;
@@ -46,6 +38,19 @@ const InputRow = styled.div`
     order: 0;
     z-index: 1;
    
+   
+`;
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: normal;
+    align-items: center;
+    align-content: center;
+    margin: 0.5rem 0 2rem 0;
+
+
    
 `;
 
@@ -59,11 +64,13 @@ class Input extends React.Component {
 
         return (
             <>
-            <InputRow>
-                <label for={type}>{type}</label>
-                <InputField value={value} id={type} maxLength="2" type={type} onChange={(e) => this.props.onChange(e.target)} 
-                />
-            </InputRow>  
+            <Container>
+                <InputRow>
+                    <label for={type}>{type}</label>
+                    <InputField placeholder="00" id={type} maxLength="2" type={type} onChange={(e) => this.props.onChange(e.target)} 
+                    />
+                </InputRow>  
+            </Container>
             </>
         );
     }
