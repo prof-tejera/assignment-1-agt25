@@ -60,14 +60,14 @@ class Input extends React.Component {
 
    
     render() {
-            const { type, value } = this.props;
+            const { type, value, timer } = this.props;
 
         return (
             <>
             <Container>
                 <InputRow>
                     <label for={type}>{type}</label>
-                    <InputField placeholder="00" id={type} maxLength="2" type={type} onChange={(e) => this.props.onChange(e.target)} 
+                    <InputField value={value ? value : ""} id={`${type}`} maxLength="2" type={type} onChange={(e) => this.props.onChange(e.target)} 
                     />
                 </InputRow>  
             </Container>

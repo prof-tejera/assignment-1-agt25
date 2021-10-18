@@ -7,6 +7,7 @@ import TimersView from "./views/TimersView";
 
 
 import Back from "./images/back.svg";
+import TimerInputs from "./components/generic/TimerInputs";
 
 
 
@@ -70,10 +71,13 @@ function App() {
         <nav>
           <ul>
             <li>
-              <StyledLink to="/stopwatch">Timers</StyledLink>
+              <StyledLink to="/">Timers</StyledLink>
             </li>
             <li>
               <StyledLink to="/docs">Documentation</StyledLink>
+            </li>
+            <li>
+              <StyledLink to="/test">Test</StyledLink>
             </li>
           </ul>
         </nav>
@@ -81,8 +85,11 @@ function App() {
           <Route path="/docs">
             <DocumentationView />
           </Route>
-          <Route path="/stopwatch">
+          <Route path="/">
             <TimersView />
+          </Route>
+          <Route path="/test">
+            <TimerInputs />
           </Route>
         </Switch>
       </Router>

@@ -27,12 +27,12 @@ function App() {
   
 
   return (
-         <>
+      <>
       <Router>
         <nav>
           <ul>
             <li>
-              <Link to="/stopwatch">Stopwatch</Link>
+              <Link to="/">Stopwatch</Link>
             </li>
             <li>
               <Link to="/countdown">Countdown</Link>
@@ -46,7 +46,7 @@ function App() {
           </ul>
         </nav>
         <Switch>
-          <Route path="/stopwatch">
+          <Route path="/">
             <Stopwatch />
             
           </Route>

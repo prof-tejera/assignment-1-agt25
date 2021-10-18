@@ -27,21 +27,10 @@ text-align: center;
 `;
 
 const NavLink = styled(Link)`
-
   text-decoration: none;
   color: grey;
 
-  
-  
-  
-
-
-
 `;
-
-
-
-
 
 
 
@@ -102,16 +91,9 @@ class BottomNav extends React.Component {
           
           </Route>
         </Switch>
-      </Router>
-            
-
-            
-          
-           
-           
-            
+      </Router> 
         </Container>
-            </>
+        </>
         );
     }
 }

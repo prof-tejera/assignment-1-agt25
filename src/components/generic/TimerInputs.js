@@ -4,7 +4,7 @@ import Button from "../generic/Button";
 import TimerScreen from "../generic/TimerScreen";
 import styled from "styled-components";
 import Input from "../generic/Input";
-import TimerInputs from "../generic/TimerInputs";
+import { contains } from "dom-helpers";
 
 
 const AnimatedButton = styled(Button)`
@@ -39,10 +39,21 @@ const ActionButtonsContainer = styled.div`
     top: -6.5rem;  
 `;
 
+const InputContainer = styled.div`
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    margin-bottom: 4.4rem;
+    position: relative;
+    width: 85%;
+
+`;
 
 
-
-class Stopwatch extends React.Component {
+class TimerInputs extends React.Component {
 
   state = {
     currentTime: null,
@@ -60,6 +71,15 @@ class Stopwatch extends React.Component {
     timerInputted: false,
     timerStarted: false,
     timerPaused: false,
+    time: {
+        hours: "00",
+        minutes: "00",
+        seconds: "00",
+        rounds: 0, 
+        restHours: "00",
+        restMinutes: "00",
+        restSeconds: "00"
+    }
   };
 
   handleAction = () => {
@@ -129,80 +149,86 @@ class Stopwatch extends React.Component {
   }
 
   handleTimeInput = (e) => {
+
+    
     const num = e.value;
     const id = e.id;
     console.log(`num: ${num}, id: ${id}`);
+
+
+    // Get the id Substring to see if we should update the run or rest object
+    const idSubStr = "time";
+
 
     if (parseInt(num) > 0) {
       this.setState({timerInputted: true});
       this.setState({actionBtn: "Start"});
     }
 
-    if (id === "Hour" ) {
-      this.setState({hours: num});
+    if (id.includes("Hour")) {
+        const newTime = {...this.state.time, hours: num}
+        this.setState({time: newTime})
+      
     } else if (id === "Min") {
       if (num > 59) {
-        this.setState({minutes: 59});
+        const newTime = {...this.state.time, minutes: 59}
+        this.setState({time: newTime})
       } else {
-        this.setState({minutes:  num});
+        const newTime = {...this.state.time, minutes: num}
+        this.setState({time: newTime})
       }
        
     } else {
       if (num > 59) {
-        this.setState({seconds: 59});
+        const newTime = {...this.state.time, seconds: 59}
+        this.setState({time: newTime})
       } else {
-        this.setState({seconds:  num});
+        const newTime = {...this.state.time, seconds: num}
+        this.setState({time: newTime})
       }
+      
     }
-  
-  }
-
-  handleInputs = (e) => {
-    console.log(`this is ${e}`);
-    this.setState({
-      hours: e.hours,
-      minutes: e.minutes,
-      seconds: e.seconds
-    }) 
+    
+    
+    
   }
   
   render() {
+      const { showInputs } = this.props; 
     return (
       <div>
-        <TimerInputs showInputs={true} onClick={this.handleInputs}/>
-      <Device type="phone">
-     
-            {this.state.showTimer  && 
-              <TimerScreen
-                    showing={this.state.roundTimer} 
-                    type="Stopwatch"
-                    hours={this.state.hours} 
-                    minutes={this.state.minutes}
-                    seconds={this.state.seconds}/> }
+                {showInputs && 
+                <div>
+                  <h3>Intended</h3>
+                  <h2>Run Time</h2>
+                  
+                  <InputContainer>
+                    <Input type="Hour" 
+                           timer="Run"
+                           value={this.state.time.hours} 
+                           onChange={this.handleTimeInput}/>
+                    <Input type="Min" 
+                           timer="Run"
+                           value={this.state.time.minutes} 
+                           onChange={this.handleTimeInput}/>
+                    <Input type="Sec" 
+                           timer="Run"
+                           value={this.state.time.seconds} 
+                           onChange={this.handleTimeInput}/>
+                  </InputContainer> 
+                  <Button onClick={(e) => this.props.onClick(this.state.time)}></Button>
+                </div>  
                 
-                
+                } 
               
       
-              <ActionButtonsContainer>
-                  <AnimatedButton outline="2px solid #302F2F" 
-                                  outlineOffset="2px" 
-                                  onClick={this.handleAction}>
-                                  Reset
-                  </AnimatedButton>
-                  <AnimatedButton disabled={this.state.actionBtnDisabled} 
-                                  outline="2px solid #142F1B" 
-                                  outlineOffset="2px" 
-                                  background="#142F1B" 
-                                  color="#94D769"
-                                  onClick={this.handleAction}> 
-                                  {this.state.actionBtn}
-                  </AnimatedButton>
-              </ActionButtonsContainer>
-      </Device>    
+              
+     
       </div>
      
     )
   }
 }
 
-export default Stopwatch;
+export default TimerInputs;
+

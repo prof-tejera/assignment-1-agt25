@@ -8,6 +8,7 @@ import Button from "../components/generic/Button";
 
 import MobileScreen from "../components/generic/Device";
 
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -23,6 +24,7 @@ class Documentation extends React.Component {
     return (
       <Container>
         <div>
+      
           <Title>Documentation</Title>
           <DocumentComponent
             title="Loading spinner "
