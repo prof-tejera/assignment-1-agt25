@@ -6,7 +6,6 @@ import DocumentationView from "./views/DocumentationView";
 import TimersView from "./views/TimersView";
 
 
-import Back from "./images/back.svg";
 import TimerInputs from "./components/generic/TimerInputs";
 
 

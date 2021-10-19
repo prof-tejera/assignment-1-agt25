@@ -1,10 +1,7 @@
 import React from "react";
-import Device from "../generic/Device";
 import Button from "../generic/Button";
-import TimerScreen from "../generic/TimerScreen";
 import styled from "styled-components";
 import Input from "../generic/Input";
-import { contains } from "dom-helpers";
 
 
 const AnimatedButton = styled(Button)`
@@ -39,6 +36,22 @@ const ActionButtonsContainer = styled.div`
     top: -6.5rem;  
 `;
 
+const NextButton = styled(AnimatedButton)`
+    outline: 2px solid #302F2F; 
+    outline-offset: 2px;
+    color: #9DB9CD;
+
+
+`;
+
+const StartButton = styled(AnimatedButton)`
+    outline: 2px solid #142F1B; 
+    outline-offset: 2px;
+    background-color: #142F1B;
+    color: #94D769;
+
+`;
+
 const InputContainer = styled.div`
     display: inline-flex;
     flex-direction: row;
@@ -55,168 +68,231 @@ const InputContainer = styled.div`
 
 class TimerInputs extends React.Component {
 
-  state = {
-    currentTime: null,
-    toggle: false,
-    roundTimer : true,
-    hours : "00",
-    minutes : "00", 
-    seconds : "00",
-    rounds: null,
-    actionBtn : "New",
-    actionBtnDisabled: false,
-    timerType : "XY",
-    showTimer: true, 
-    showInputs: false, 
-    timerInputted: false,
-    timerStarted: false,
-    timerPaused: false,
-    time: {
-        hours: "00",
-        minutes: "00",
-        seconds: "00",
-        rounds: 0, 
-        restHours: "00",
-        restMinutes: "00",
-        restSeconds: "00"
+    constructor(props) {
+        super(props);
+        this.state = {
+            timerType: props.type, 
+            showInputs: props.showInputs,
+
+            runTimePhase: true,
+            roundsPhase: false,
+            restTimePhase: false,
+    
+            runEnabled: false, 
+            roundsEnabled: false,
+            restEnabled: false,
+
+            time: {
+                started: false, 
+                hours: "00",
+                minutes: "00",
+                seconds: "00",
+                rounds: "0", 
+                restHours: "00",
+                restMinutes: "00",
+                restSeconds: "00"
+            }
+        };
     }
-  };
+    
 
-  handleAction = () => {
-      // handleActionButton  -> a bunch of case statements
-      // handleStartTimer 
-      // handlePause Timer
-      // handleReset 
-      // handleInput 
-      // all inputs start with run time 
-      // if input type == xy or tabata, also register intended rounds
-      // if input type tabata, also register rest time 
-
-
-      // MUST CHANGE
-
-      // CASE STATEMENTS IF THE ACTIONBTN == "NEW", show input
-      // If actionbtn == "pause" > pause timer 
-      // Reverse the states of the timer and inputs component
-      if (this.state.timerStarted) {
-        this.setState({
-          showTimer: true, 
-          showInputs: false, 
-        })
-        
-      } else {
-        this.setState({
-          showTimer: !this.state.showTimer,
-          showInputs: !this.state.showInputs
-        })
-      }
-      
-
-      if (this.state.actionBtn === "Start") {
-        console.log("start");
-        this.setState({
-          timerStarted: true, 
-          actionBtn: "Pause"
-        })
-        
-        
-
-      } else if (this.state.actionBtn === "Pause") {
-        console.log("pause");
-        this.setState({
-          actionBtn: "Start",
-          timerPaused: true, 
-          showTimer: true,
-          showInputs: false
-        })
-        
-        
-      }
-
-  };
-  handlePause = () => {
-    console.log('pause started');
-  }
-
-  handleStopwatch = () => {
-    console.log('Timer started!!!!');
-    this.setState({actionBtn: "Pause"});
-  }
-
-  handleReset = () => {
-    this.setState({hours: "00", minutes: "00", seconds: "00"});
-    this.setState({actionBtn: "New"});
-  }
 
   handleTimeInput = (e) => {
 
-    
-    const num = e.value;
+    // Save number input and id 
+    const num = e.value.trim();
     const id = e.id;
-    console.log(`num: ${num}, id: ${id}`);
 
-
-    // Get the id Substring to see if we should update the run or rest object
-    const idSubStr = "time";
-
-
-    if (parseInt(num) > 0) {
-      this.setState({timerInputted: true});
-      this.setState({actionBtn: "Start"});
-    }
-
-    if (id.includes("Hour")) {
-        const newTime = {...this.state.time, hours: num}
-        this.setState({time: newTime})
-      
+    // Enable 'start' button on valid input
+    this.setState({
+        runEnabled: num > 0 && num !== "" ? true : false,
+    })
+    
+    // Copy over the current time object from state
+    let newRun = {...this.state.time};
+        
+    if (id === "Hour") {
+        newRun = {...this.state.time, hours: num}
     } else if (id === "Min") {
-      if (num > 59) {
-        const newTime = {...this.state.time, minutes: 59}
-        this.setState({time: newTime})
-      } else {
-        const newTime = {...this.state.time, minutes: num}
-        this.setState({time: newTime})
-      }
-       
+        newRun = {...this.state.time, minutes: num > 59 ? 59 : num}
     } else {
-      if (num > 59) {
-        const newTime = {...this.state.time, seconds: 59}
-        this.setState({time: newTime})
-      } else {
-        const newTime = {...this.state.time, seconds: num}
-        this.setState({time: newTime})
+        newRun = {...this.state.time, seconds: num > 59 ? 59 : num}
+    }
+    this.setState({time: newRun}) 
+  }
+
+
+  handleNext = () => {
+      console.log('Available');
+      this.setState({
+          runTimePhase: false,
+          roundsPhase: true, 
+      })
+      
+
+      if (this.state.time.rounds !== "0") {
+        this.setState({
+            roundsPhase: false, 
+            xyReady: true,
+
+        })  
       }
       
-    }
-    
-    
-    
   }
-  
+
+  handleRoundInput = (e) => {
+    let newRounds = {...this.state.time, rounds: e.value}
+    console.log(e);
+    this.setState({
+        roundsPhase: true,
+        runTimePhase: false
+    })
+
+    this.setState({time: newRounds}) 
+    
+    
+}
+
+  handleRunReset = () => {
+    this.setState({
+        timerInputted: false, 
+        time: {
+        started: false,
+        hours: "00",
+        minutes: "00",
+        seconds: "00",
+        }
+    })
+  }
+
+  handleRoundsReset = () => {
+    let noRounds = {...this.state.time, rounds: "0"}
+    this.setState({time: noRounds}) 
+
+  }
+
+  handleRestTimeInput = (e) => {
+    
+    this.setState({
+        restTimePhase: true,
+        roundsPhase: false,
+    })
+  }
   render() {
-      const { showInputs } = this.props; 
+    
     return (
-      <div>
-                {showInputs && 
-                <div>
-                  <h3>Intended</h3>
-                  <h2>Run Time</h2>
+        <div>
+            {this.state.showInputs && 
+            <div>
+
+                {/* Runtime phase used by all timers */}
+                {this.state.runTimePhase && 
+                 <div>
+                    <h3>Intended</h3>
+                    <h2>Run Time</h2>
+                    
+                    <InputContainer>
+                        <Input type="Hour" 
+                            timer="Run"
+                            value={this.state.time.hours} 
+                            onChange={this.handleTimeInput}/>
+                        <Input type="Min" 
+                            timer="Run"
+                            value={this.state.time.minutes} 
+                            onChange={this.handleTimeInput}/>
+                        <Input type="Sec" 
+                            timer="Run"
+                            value={this.state.time.seconds} 
+                            onChange={this.handleTimeInput}/>
+                    </InputContainer> 
+                
+                {/* Reset and conditional Start / Next button depending on the timer type */}
+                <ActionButtonsContainer>
+                    <AnimatedButton outline="2px solid #302F2F" 
+                                    outlineOffset="2px" 
+                                    onClick={this.handleReset}>
+                                    Reset
+                    </AnimatedButton>
+
+                    {this.state.timerType === "Stopwatch" || 
+                            this.state.timerType === "Countdown" ?
+                            <StartButton onClick={(e) => this.props.onClick(this.state.time)}>Start</StartButton> : 
+                            <NextButton onClick={this.handleRoundInput}>Next</NextButton>}
+                </ActionButtonsContainer>
+                  
+                    </div>
+                  }
+                 
+                {/* Rounds phase used by XY and Tabata */}
+                 {this.state.roundsPhase && 
+                 <div>
+                     <h3>Intended</h3>
+                        <h2>Rounds</h2>
                   
                   <InputContainer>
-                    <Input type="Hour" 
-                           timer="Run"
-                           value={this.state.time.hours} 
-                           onChange={this.handleTimeInput}/>
-                    <Input type="Min" 
-                           timer="Run"
-                           value={this.state.time.minutes} 
-                           onChange={this.handleTimeInput}/>
-                    <Input type="Sec" 
-                           timer="Run"
-                           value={this.state.time.seconds} 
-                           onChange={this.handleTimeInput}/>
+                    <Input type="Rounds" 
+                           timer="Rounds"
+                           value={this.state.time.rounds} 
+                           onChange={this.handleRoundInput}/>
                   </InputContainer> 
-                  <Button onClick={(e) => this.props.onClick(this.state.time)}></Button>
+
+                  <ActionButtonsContainer>
+                    <AnimatedButton outline="2px solid #302F2F" 
+                                    outlineOffset="2px" 
+                                    onClick={this.handleRoundsReset}>
+                                    Reset
+                    </AnimatedButton>
+
+                    {this.state.timerType === "XY" ?
+                            <StartButton onClick={(e) => this.props.onClick(this.state.time)}>
+                                Start</StartButton> : 
+                            <NextButton onClick={this.handleRestTimeInput}>
+                                Next</NextButton>}
+                </ActionButtonsContainer>
+                </div>
+                }
+
+            {this.state.restTimePhase && 
+                 <div>
+                     <h3>Intended</h3>
+                        <h2>Rest Time</h2>
+                        <InputContainer>
+                        <Input type="restHour" 
+                            timer="Run"
+                            value={this.state.time.restHours} 
+                            onChange={this.handleRestTimeInput}/>
+                        <Input type="restMin" 
+                            timer="Run"
+                            value={this.state.time.restMinutes} 
+                            onChange={this.handleRestTimeInput}/>
+                        <Input type="restSec" 
+                            timer="Run"
+                            value={this.state.time.restSeconds} 
+                            onChange={this.handleRestTimeInput}/>
+                    </InputContainer> 
+                  
+
+                  <ActionButtonsContainer>
+                    <AnimatedButton outline="2px solid #302F2F" 
+                                    outlineOffset="2px" 
+                                    onClick={this.handleReset}>
+                                    Reset
+                    </AnimatedButton>
+
+                    
+                    <StartButton onClick={(e) => this.props.onClick(this.state.time)}>Start</StartButton> : 
+                            
+                </ActionButtonsContainer>
+                </div>
+                }   
+               
+
+
+                
+                 
+
+                
+                
                 </div>  
                 
                 } 

@@ -77,7 +77,9 @@ class Input extends React.Component {
 }
 
 Input.propTypes = {
-    type: PropTypes.oneOf(["Hour", "Min", "Sec"]),
+    type: PropTypes.oneOf(
+        ["Hour", "Min", "Sec", "Rounds", "restHour", "restMin", "restSec"]
+        ),
   };
 
 
