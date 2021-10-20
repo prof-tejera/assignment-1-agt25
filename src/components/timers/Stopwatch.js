@@ -93,10 +93,11 @@ class Stopwatch extends React.Component {
   
 
   handleInputs = (e) => {
+    console.log(e);
     this.setState({
-      hours: e.hours,
-      minutes: e.minutes,
-      seconds: e.seconds,
+      hours: e.runHours,
+      minutes: e.runMinutes,
+      seconds: e.runSeconds,
       timerStarted: true,
       showTimer: true,
       showInputs: false, 
@@ -138,7 +139,7 @@ class Stopwatch extends React.Component {
               </ActionButtonsContainer>
             } 
             {this.state.showInputs && 
-            <TimerInputs type="Tabata" showInputs={this.state.showInputs} onClick={this.handleInputs}/>}
+            <TimerInputs type="Stopwatch" showInputs={this.state.showInputs} onClick={this.handleInputs}/>}
       </Device>    
       </div>
      

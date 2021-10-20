@@ -60,7 +60,7 @@ const Container = styled.div`
 class Input extends React.Component {
     
     render() {
-            const { type, value } = this.props;
+            const { type, label, value } = this.props;
 
         return (
             <>
@@ -68,7 +68,7 @@ class Input extends React.Component {
                 <InputWrapper>
                     <Row>
             
-                    <label for={type}>{type}</label> 
+                    <label for={label}>{label}</label> 
                     </Row>
                     <Row>
                     <InputField 
@@ -86,7 +86,12 @@ class Input extends React.Component {
 }
 
 Input.propTypes = {
-    type: PropTypes.oneOf(["Hour", "Min", "Sec", "Rounds"]),
+    type: PropTypes.oneOf([
+        "runHours", "runMinutes", "runSeconds", 
+        "rounds",
+        "restHours", "restMinutes", "restSeconds"
+    ]),
+    label: PropTypes.oneOf(["Hour", "Min", "Sec", "Intervals"]),
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number

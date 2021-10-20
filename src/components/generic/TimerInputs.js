@@ -70,6 +70,7 @@ class TimerInputs extends React.Component {
 
     constructor(props) {
         super(props);
+        this.handleTimeInput = this.handleTimeInput.bind(this);
         this.handleGoBack = this.handleGoBack.bind(this);
         this.state = {
             timerType: props.type, 
@@ -88,9 +89,9 @@ class TimerInputs extends React.Component {
             // Timer 
             time: {
                 started: false, 
-                hours: "00",
-                minutes: "00",
-                seconds: "00",
+                runHours: "00",
+                runMinutes: "00",
+                runSeconds: "00",
 
                 rounds: "00", 
 
@@ -106,31 +107,53 @@ class TimerInputs extends React.Component {
    * The three methods below handle: run, rounds, and rest inputs
    ***************************************************************/
 
-  handleRunInput = (e) => {
-
+  handleTimeInput = (e) => {
+      
     // Save number input and id 
     let num = parseInt(e.value);
     const id = e.id;
 
-    // Enable 'start' button on valid input
-    this.setState({
-        runEnabled: num > 0 && num !== "" ? true : false,
-    })
-
+    // If the input is whitespace, set the value to 0
+    if (!num) {
+        num = "0";
+    }
+    
     // Copy over the current time object from state
     let newRun = {...this.state.time};
       
-    
-   
     // Assign the input to the correct state value
-    if (id === "Hour") {
-        newRun = {...this.state.time, hours: num}
-    } else if (id === "Min") {
-        newRun = {...this.state.time, minutes: num > 59 ? 59 : num}
+    if (id.includes("Hour")) {
+        newRun = {...this.state.time, [id]: num}
+    } else if (id.includes("Min")) {
+        newRun = {...this.state.time, [id]: num > 59 ? 59 : num}
     } else {
-        newRun = {...this.state.time, seconds: num > 59 ? 59 : num}
+        newRun = {...this.state.time, [id]: num > 59 ? 59 : num}
     }
-    this.setState({time: newRun}) 
+
+    // Set the new object as the time state 
+    this.setState({
+        time: newRun
+    }, function () {
+        
+        // Enable the action button if any of the time inputs are true
+        if (id.includes("run")) {
+            this.setState({
+                runEnabled: this.state.time.runHours > 0 || 
+                            this.state.time.runMinutes > 0 || 
+                            this.state.time.runSeconds > 0 ? true : false,
+            })
+        } else {
+            this.setState({
+                restEnabled: this.state.time.restHours > 0 || 
+                             this.state.time.restMinutes > 0 || 
+                             this.state.time.restSeconds > 0 ? true : false,
+            })
+        }
+        
+    });
+    
+    
+    
   }
 
 
@@ -161,32 +184,12 @@ class TimerInputs extends React.Component {
         roundsPhase: false,
         restTimePhase: true,
     })
-
-    // Save number input and id 
-    let num = parseInt(e.value);
-    const id = e.id;
-
-    // Enable 'start' button on valid input
-    this.setState({
-        restEnabled: num > 0 && num !== "" ? true : false,
-    })
-
-    // Copy over the current time object from state
-    let newRest = {...this.state.time};
     
-    // Assign the input to the correct state value
-    if (id === "Hour") {
-        newRest = {...this.state.time, restHours: num}
-    } else if (id === "Min") {
-        newRest = {...this.state.time, restMinutes: num > 59 ? 59 : num}
-    } else if (id === "Sec") {
-        newRest = {...this.state.time, restSeconds: num > 59 ? 59 : num}
-    } else {
-        return null;
-    }
-    this.setState({time: newRest}) 
+    
   }
 
+
+  
   handleGoBack() {
     if (this.state.runTimePhase) {
         console.log('run!');
@@ -219,18 +222,18 @@ class TimerInputs extends React.Component {
                     <h2>Run Time</h2>
                     
                     <InputContainer>
-                        <Input type="Hour" 
-                            timer="Run"
-                            value={this.state.time.hours} 
-                            onChange={this.handleRunInput}/>
-                        <Input type="Min" 
-                            timer="Run"
-                            value={this.state.time.minutes} 
-                            onChange={this.handleRunInput}/>
-                        <Input type="Sec" 
-                            timer="Run"
-                            value={this.state.time.seconds} 
-                            onChange={this.handleRunInput}/>
+                        <Input type="runHours" 
+                            label="Hour"
+                            value={this.state.time.runHours} 
+                            onChange={this.handleTimeInput}/>
+                        <Input type="runMinutes" 
+                            label="Min"
+                            value={this.state.time.runMinutes} 
+                            onChange={this.handleTimeInput}/>
+                        <Input type="runSeconds" 
+                            label="Sec"
+                            value={this.state.time.runSeconds} 
+                            onChange={this.handleTimeInput}/>
                     </InputContainer> 
                 
                 {/*****************************************
@@ -251,7 +254,8 @@ class TimerInputs extends React.Component {
                                                     Start
                                 </StartButton> : 
                                 <NextButton disabled={!this.state.runEnabled}
-                                            onClick={this.handleRoundInput}>
+                                            onClick={this.handleRoundInput}
+                                            onKeyDown={this.handleResetInput}>
                                                 Next
                                 </NextButton>}
                     </ActionButtonsContainer>
@@ -269,7 +273,7 @@ class TimerInputs extends React.Component {
                   
                   <InputContainer>
                   <Input type="Rounds" 
-                            timer="Run"
+                            label="Intervals"
                             value={this.state.time.rounds} 
                             onChange={this.handleRoundInput}/>
                   </InputContainer> 
@@ -307,18 +311,18 @@ class TimerInputs extends React.Component {
                      <h3>Intended</h3>
                         <h2>Rest Time</h2>
                         <InputContainer>
-                        <Input type="Hour" 
-                            timer="Rest"
+                        <Input type="restHours" 
+                            label="Hour"
                             value={this.state.time.restHours} 
-                            onChange={this.handleRestInput}/>
-                        <Input type="Min" 
-                            timer="Rest"
+                            onChange={this.handleTimeInput}/>
+                        <Input type="restMinutes" 
+                            label="Min"
                             value={this.state.time.restMinutes} 
-                            onChange={this.handleRestInput}/>
-                        <Input type="Sec" 
-                            timer="Rest"
+                            onChange={this.handleTimeInput}/>
+                        <Input type="restSeconds" 
+                            label="Sec"
                             value={this.state.time.restSeconds} 
-                            onChange={this.handleRestInput}/>
+                            onChange={this.handleTimeInput}/>
                     </InputContainer> 
                   
 
