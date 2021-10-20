@@ -6,10 +6,6 @@ import DocumentationView from "./views/DocumentationView";
 import TimersView from "./views/TimersView";
 
 
-import TimerInputs from "./components/generic/TimerInputs";
-
-
-
 const Container = styled.div`
 background-image: linear-gradient(to left bottom, 
   #f5fdff, #f4fefe, #f4fffc, #f6fff9, 
@@ -75,9 +71,7 @@ function App() {
             <li>
               <StyledLink to="/docs">Documentation</StyledLink>
             </li>
-            <li>
-              <StyledLink to="/test">Test</StyledLink>
-            </li>
+            
           </ul>
         </nav>
         <Switch>
@@ -87,9 +81,8 @@ function App() {
           <Route path="/">
             <TimersView />
           </Route>
-          <Route path="/test">
-            <TimerInputs />
-          </Route>
+        
+          
         </Switch>
       </Router>
       

@@ -58,8 +58,7 @@ const Container = styled.div`
 
 
 class Input extends React.Component {
-
-   
+    
     render() {
             const { type, value } = this.props;
 
@@ -72,7 +71,10 @@ class Input extends React.Component {
                     <label for={type}>{type}</label> 
                     </Row>
                     <Row>
-                    <InputField value={value ? value : ""} id={`${type}`} maxLength="2" type={type} onChange={(e) => this.props.onChange(e.target)} 
+                    <InputField 
+                    onInput={(e) => {
+                        e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');}}
+                    value={value ? value : ""} id={`${type}`} maxLength="2" type={type} onChange={(e) => this.props.onChange(e.target)} 
                     />
                     </Row>
                     
@@ -85,7 +87,10 @@ class Input extends React.Component {
 
 Input.propTypes = {
     type: PropTypes.oneOf(["Hour", "Min", "Sec", "Rounds"]),
-    value: PropTypes.string
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ])
   };
 
 
