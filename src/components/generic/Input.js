@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import {Row, Col} from "react-bootstrap";
 
 const InputField = styled.input`
   z-index: 1; 
@@ -30,7 +31,7 @@ const InputField = styled.input`
 `;
 
 
-const InputRow = styled.div`
+const InputWrapper = styled.div`
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
@@ -60,16 +61,22 @@ class Input extends React.Component {
 
    
     render() {
-            const { type, value, timer } = this.props;
+            const { type, value } = this.props;
 
         return (
             <>
             <Container>
-                <InputRow>
-                    <label for={type}>{type}</label>
+                <InputWrapper>
+                    <Row>
+            
+                    <label for={type}>{type}</label> 
+                    </Row>
+                    <Row>
                     <InputField value={value ? value : ""} id={`${type}`} maxLength="2" type={type} onChange={(e) => this.props.onChange(e.target)} 
                     />
-                </InputRow>  
+                    </Row>
+                    
+                </InputWrapper>  
             </Container>
             </>
         );
@@ -77,9 +84,8 @@ class Input extends React.Component {
 }
 
 Input.propTypes = {
-    type: PropTypes.oneOf(
-        ["Hour", "Min", "Sec", "Rounds", "restHour", "restMin", "restSec"]
-        ),
+    type: PropTypes.oneOf(["Hour", "Min", "Sec", "Rounds"]),
+    value: PropTypes.string
   };
 
 

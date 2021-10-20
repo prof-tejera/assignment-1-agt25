@@ -16,7 +16,12 @@ const Button = styled.button`
   margin: 0 auto;
   font-family: Open Sans;
   disabled: ${(props) => props.disabled || "none"};
-
+  :disabled {
+    background: #302F2F;
+    color: #C1BEBE;
+    outline: 2px solid #302F2F;
+    outline-offset: 2px;
+  }
 `;
 
 export default Button;
