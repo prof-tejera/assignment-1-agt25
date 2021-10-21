@@ -2,6 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import OperationsCircle from "../../images/operations-circle.svg";
 import Button from "./Button";
+import ProgressRate from "../../images/progress-rate.svg";
+
+
 
 
 const Container = styled.div`
@@ -51,17 +54,61 @@ const Time = styled.h1`
     font-weight: 300;  
 `;
 
-const ProgressBar = styled.div`
-    border-top: 1px solid #1C91F2;
-    width: 66%;
+const ProgressWrapper = styled.div`
+    width: 229px;
     margin: 0 auto;
+    height: 30px;
     position: relative;
-    top: -175px;
+    top: -197px;
+    left: -2.5px;
+
     p {
+        position: relative;
+        top: -25px;
         font-size: 26px;
-        margin: 10px 0 10px 0;
-    }   
+        color: #458FEBDE;
+    }
+      
+    }
+    
+      
 `;
+
+const ProgressFill = styled.div`
+    position: relative;
+    top: -23px;
+    width: 95%;
+    background-color: orange;
+    animation: progressAnimation ${(props) => props.time || "0s"};
+    padding: 1px;
+    border-radius: 30px;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 
+                0 1px rgba(255, 255, 255, 0.08);
+
+    div {
+        height: 18px;
+        border-radius: 30px;
+        background-color: orange;
+        transition: 0.4s linear;
+        transition-property: width, background-color;
+        width: 85%;
+        
+        
+    }
+    @keyframes progressAnimation {
+        0% {
+          width: 5%;
+          background-color: #F9BCCA;
+        }
+        100% {
+          width: 100%;
+          background-color: orange;
+        }
+      }
+
+`;
+
 
 const ButtonWrapper = styled(Button)`
     width: 75px;
@@ -72,10 +119,18 @@ const ButtonWrapper = styled(Button)`
 
 
 class OperationsScreen extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+          seconds: 0, 
+        }
+      }
     
    
     render() {
-        const { type, hours, minutes, seconds } = this.props; 
+        const { type, hours, minutes, seconds, timerStarted } = this.props; 
+        
 
         
         return (
@@ -119,9 +174,15 @@ class OperationsScreen extends React.Component {
 
 
                     {/* Progress bar and status value (run or rest) */}
-                    <ProgressBar>
+                    <ProgressWrapper>
+                        <img width="232px" src={ProgressRate} alt="Progress Rate"></img>
+                        {timerStarted &&  <ProgressFill/> }
+                       
                         <p>Run</p>
-                    </ProgressBar>
+                        
+                    </ProgressWrapper>
+    
+                   
                 </Container>      
             </>
         );

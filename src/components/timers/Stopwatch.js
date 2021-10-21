@@ -4,6 +4,7 @@ import Button from "../generic/Button";
 import TimerScreen from "../generic/TimerScreen";
 import styled from "styled-components";
 import TimerInputs from "../generic/TimerInputs";
+import { plus } from "../../utils/helpers";
 
 
 
@@ -55,6 +56,7 @@ class Stopwatch extends React.Component {
       actionBtnDisabled: false,
       timerStarted: false,
       timerPaused: false,
+      totalSeconds: 0, 
     }
   }
 
@@ -94,6 +96,8 @@ class Stopwatch extends React.Component {
 
   handleInputs = (e) => {
     console.log(e);
+    
+     console.log(plus(4, 4));
     this.setState({
       hours: e.runHours,
       minutes: e.runMinutes,
@@ -101,8 +105,13 @@ class Stopwatch extends React.Component {
       timerStarted: true,
       showTimer: true,
       showInputs: false, 
-      actionBtn: "Pause"
+      actionBtn: parseInt(this.state.hours) || 
+                parseInt(this.state.minutes) || 
+                parseInt(this.state.seconds) ? "Pause" : "New"
+      
     }) 
+    
+    
   }
   
   render() {
@@ -117,7 +126,8 @@ class Stopwatch extends React.Component {
                     type="Stopwatch"
                     hours={this.state.hours} 
                     minutes={this.state.minutes}
-                    seconds={this.state.seconds}/> }
+                    seconds={this.state.seconds}
+                    timerStarted={this.state.timerStarted}/> }
                 
                 
               
@@ -139,7 +149,7 @@ class Stopwatch extends React.Component {
               </ActionButtonsContainer>
             } 
             {this.state.showInputs && 
-            <TimerInputs type="Stopwatch" showInputs={this.state.showInputs} onClick={this.handleInputs}/>}
+            <TimerInputs type="Tabata" showInputs={this.state.showInputs} onClick={this.handleInputs}/>}
       </Device>    
       </div>
      

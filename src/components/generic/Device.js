@@ -6,8 +6,8 @@ import BottomNav from "./BottomNav"
 
 const deviceDimensions = {
     phone: {
-        width: 330,
-        height: 660,
+        width: 320,
+        height: 640,
     }, 
     tablet: {
         width: 420,

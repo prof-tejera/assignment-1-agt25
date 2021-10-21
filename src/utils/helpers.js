@@ -2,4 +2,7 @@
 // calculates number of minutes when passed in seconds. Things of this nature that you don't want to copy/paste
 // everywhere.
 
+export function plus(x, y) {
+    return x+y;
+}
 

@@ -81,7 +81,7 @@ class TimerInputs extends React.Component {
             roundsPhase: false,
             restTimePhase: false,
     
-            // Input buttons 
+            // Actions buttons 
             runEnabled: false, 
             roundsEnabled: false,
             restEnabled: false,
@@ -184,15 +184,31 @@ class TimerInputs extends React.Component {
         roundsPhase: false,
         restTimePhase: true,
     })
-    
-    
   }
 
 
   
   handleGoBack() {
     if (this.state.runTimePhase) {
-        console.log('run!');
+        let resetTimeObj = {
+            ...this.state.time, 
+            runHours: "00",
+            runMinutes: "00",
+            runSeconds: "00",
+            rounds: "00", 
+            restHours: "00",
+            restMinutes: "00",
+            restSeconds: "00",
+        }
+        this.setState({
+            time: resetTimeObj, 
+            runEnabled: false, 
+            roundsEnabled: false,
+            restEnabled: false,
+        }, function() {
+            this.props.onClick(this.state.time);
+        })
+        
     } else if (this.state.roundsPhase) {
         this.setState({
             runTimePhase: true,
