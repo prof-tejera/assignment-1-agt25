@@ -120,7 +120,7 @@ class Device extends React.Component {
                    <Nav>
                    <BottomNavLinks>
 
-</BottomNavLinks>
+                    </BottomNavLinks>
                    </Nav>
                 </Screen>
             </ScreenWrapper>

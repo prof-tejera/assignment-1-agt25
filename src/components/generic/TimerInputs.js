@@ -230,7 +230,8 @@ class TimerInputs extends React.Component {
             {this.state.showInputs && 
             <div>
                 {/************************************
-                 * Runtime phase used by all timers 
+                 * -----Phase 1: Run Time Phase-------
+                 * used by all timers  
                  *************************************/}
                 {this.state.runTimePhase && 
                  <div>

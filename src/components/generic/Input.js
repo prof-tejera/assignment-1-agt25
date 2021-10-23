@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import {Row, Col} from "react-bootstrap";
+import {Row} from "react-bootstrap";
 
 const InputField = styled.input`
   z-index: 1; 
