@@ -1,10 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import OperationsCircle from "../../images/operations-circle.svg";
-import Button from "./Button";
-import ProgressRate from "../../images/progress-rate.svg";
-import ProgressBar from "./ProgressBar";
 
+import ProgressBar from "./ProgressBar";
+import ActionsCircle from "./ActionsCircle";
+
+import OperationsCircle from "../../images/operations-circle.svg";
+import ProgressRate from "../../images/progress-rate.svg";
+import RunningIcon from "../../images/running-icon.svg";
+import StretchingIcon from "../../images/stretching-icon.svg";
+import RestingIcon from "../../images/resting-icon.svg";
 
 
 
@@ -27,14 +31,13 @@ const RoundTimerWrapper = styled.div`
 
 `;
 
-const TopButtonsContainer = styled.div`
+const TopActionsContainer = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-around;
     align-items: flex-start;
     align-content: center;
-    
     margin-bottom: -3.7rem !important;
     width: 70%;
     margin: 0 auto;
@@ -47,7 +50,7 @@ const Time = styled.h1`
     margin: 0 auto;
     position: relative;
     top: -180px;
-    font-size: 72px;
+    font-size: 70px;
     color: white;
     font-family: league-gothic;
     background-color: #1A1A1A63;
@@ -66,18 +69,13 @@ const ProgressWrapper = styled.div`
     p {
         position: relative;
         top: -25px;
-        font-size: 26px;
-        color: #458FEBDE;
-    }
-      
-    }
-    
-      
+        font-size: 26px;  
+    }      
 `;
 
 
-
-const ButtonWrapper = styled(Button)`
+const CircleWrapper = styled.div`
+    border-radius: 50%;
     width: 75px;
     height: 75px;
     background: ${(props) => props.background || "transparent"};
@@ -96,9 +94,12 @@ class OperationsScreen extends React.Component {
     
    
     render() {
-        const { type, hours, minutes, seconds, timerStarted } = this.props; 
-        
-
+        const { hours, minutes, seconds, 
+                rounds, 
+                totalSeconds, 
+                type, 
+                action, 
+                 } = this.props; 
         
         return (
             <>
@@ -106,32 +107,25 @@ class OperationsScreen extends React.Component {
                     <h3>{type}</h3>
 
                     {/* Top buttons above the timer */}
-                    <TopButtonsContainer>
+                    <TopActionsContainer>
 
-                        {/* Left side: Conditional 'Rounds' button used by XY and TABATA */}
-                        <ButtonWrapper>
-                                {type === "XY" || type === "Tabata" ? 
-                                    <Button background="#1A1A1A" 
-                                            color="#1C91F2" 
-                                            width="70px" 
-                                            height="70px" 
-                                            fontSize="55px" 
-                                            fontWeight={700}> 0 
-                                    </Button> : null}
-                        </ButtonWrapper>
+                        {/* Left side: Conditional 'Rounds' status used by XY and TABATA */}
+                        {type === "XY" || type === "Tabata" ? 
+                            <CircleWrapper background="#1A1A1A">
+                                <ActionsCircle>{rounds ? rounds : "0"}
+                                </ActionsCircle> 
+                             </CircleWrapper> : <CircleWrapper/> }
 
+                        {/* Right side: Icon status used by all timers */}
+                        <CircleWrapper background="#1A1A1A">
+                            <ActionsCircle border="1px dotted #1C91F2"> 
+                            {action === "Run" &&  <img src={RunningIcon} alt="Running Stick Figure"/>}
+                            {action === "Stretch" && <img src={StretchingIcon} alt="Stretching Stick Figure"/>}
+                            {action === "Rest" && <img src={RestingIcon} alt="Standing Stick Figure"/>}
+                            </ActionsCircle>
+                        </CircleWrapper>
+                    </TopActionsContainer>
 
-                        {/* Right side: Icon status button used by all timers */}
-                        <ButtonWrapper background="#1A1A1A">
-                            <Button border="1px dotted #1C91F2" 
-                                    background="#1A1A1A" 
-                                    width="70px" 
-                                    height="70px" 
-                                    color="#1C91F2">
-                            </Button>
-                        </ButtonWrapper>
-                    </TopButtonsContainer>
-                    
 
                     {/* Round timer wrapper and timer */}
                     <RoundTimerWrapper/>
@@ -140,14 +134,11 @@ class OperationsScreen extends React.Component {
                         </Time>
 
 
-                    {/* Progress bar and status value (run or rest) */}
+                    {/* Progress bar and status value (run, rest or the initial "stretch") */}
                     <ProgressWrapper>
                         <img width="232px" src={ProgressRate} alt="Progress Rate"></img>
-                        <ProgressBar time={20}/>
-                       
-                        <p>Run</p>
-                        
-                        
+                        <ProgressBar time={totalSeconds}/>
+                        <p>{action}</p>
                     </ProgressWrapper>
     
                    

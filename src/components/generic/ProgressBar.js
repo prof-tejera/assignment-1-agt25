@@ -7,23 +7,26 @@ const lightOrangeColor = "#F2AA4C";
 const darkOrangeColor = "#BF3604"; 
 
 
+
 const ProgressFill = styled.div`
     position: relative;
     top: -23px;
     width: 96%;
-    background-color: #458FEA;
-    animation: ${(props) => props.time};
+    background-color: #65A03178;
+    animation: progressAnimation ${(props) => props.time}s;
+    animation-play-state: running;
     padding: 0.9px;
     border-radius: 30px;
     
     div {
         height: 16px;
+
         border-radius: 30px;
         background-color: #bf3604;
         transition: 0.1s linear;
         transition-property: width, background-color;
         width: 85%;
-    }
+    };
 
     @keyframes progressAnimation {
         0% {
@@ -60,10 +63,10 @@ const ProgressFill = styled.div`
 
 class ProgressBar extends React.Component {
   render() {
-    const time = this.props.time;
+    const { time, animationPlaying } = this.props.time;
     return (
       <>
-        <ProgressFill time={`progressAnimation ${time}s`}/>
+        <ProgressFill time={time}/>
       </>
     );
   }

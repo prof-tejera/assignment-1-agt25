@@ -94,11 +94,7 @@ const BottomNavLinks= styled(BottomNav)`
     position: relative;
     top: -100px;
 
-
-
 `;
-
-
 
 
 class Device extends React.Component {
@@ -119,7 +115,6 @@ class Device extends React.Component {
                    {this.props.children}
                    <Nav>
                    <BottomNavLinks>
-
                     </BottomNavLinks>
                    </Nav>
                 </Screen>

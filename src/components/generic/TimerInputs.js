@@ -1,24 +1,23 @@
 import React from "react";
-import Button from "../generic/Button";
 import styled from "styled-components";
+
+
 import Input from "../generic/Input";
+import Button from "../generic/Button";
+import ActionButton from "./ActionButton";
 
 
-const AnimatedButton = styled(Button)`
-    :hover {
-        border: 1px solid #1B457929;
-    }
-    :active {
-        transform: scale(1.05) translate(0px, 0px);
-    }
-    ::after {
-        z-index: -1;
-        transition: all .5s;
-    }
-    :hover::after {
-        transform: scale(0.5) translate(-1px, 0px);
-        
-    }  
+const InputContainer = styled.div`
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    margin-bottom: 4.4rem;
+    position: relative;
+    width: 85%;
+
 `;
 
 
@@ -34,35 +33,6 @@ const ActionButtonsContainer = styled.div`
     position: relative;
     margin-top: 2.5rem;
     top: -6.5rem;  
-`;
-
-const NextButton = styled(AnimatedButton)`
-    outline: 2px solid #302F2F; 
-    outline-offset: 2px;
-    color: #9DB9CD;
-
-
-`;
-
-const StartButton = styled(AnimatedButton)`
-    outline: 2px solid #142F1B; 
-    outline-offset: 2px;
-    background-color: #142F1B;
-    color: #94D769;
-
-`;
-
-const InputContainer = styled.div`
-    display: inline-flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: flex-start;
-    align-content: center;
-    margin-bottom: 4.4rem;
-    position: relative;
-    width: 85%;
-
 `;
 
 
@@ -160,15 +130,12 @@ class TimerInputs extends React.Component {
   handleRoundInput = (e) => {
     let id = e.id;
     let num = parseInt(e.value); 
-    console.log(e);
-
     this.setState({
         roundsPhase: true,
         runTimePhase: false
     })
     
-    
-    if (id === "Rounds") {
+    if (id === "rounds") {
         let newRounds = {...this.state.time, rounds: num}
         this.setState({
             time: newRounds, 
@@ -224,7 +191,7 @@ class TimerInputs extends React.Component {
 
 
   render() {
-    
+
     return (
         <div>
             {this.state.showInputs && 
@@ -258,23 +225,23 @@ class TimerInputs extends React.Component {
                  * depending on the timer type 
                  * ***************************************/}
                     <ActionButtonsContainer>
-                        <AnimatedButton outline="2px solid #302F2F" 
+                        <Button outline="2px solid #302F2F" 
                                         outlineOffset="2px" 
                                         onClick={this.handleGoBack}>
                                         Back
-                        </AnimatedButton>
+                        </Button>
 
                         {this.state.timerType === "Stopwatch" || 
                                 this.state.timerType === "Countdown" ?
-                                <StartButton disabled={!this.state.runEnabled}
+                                <ActionButton type="Green" disabled={!this.state.runEnabled}
                                             onClick={(e) => this.props.onClick(this.state.time)}>
                                                     Start
-                                </StartButton> : 
-                                <NextButton disabled={!this.state.runEnabled}
+                                </ActionButton> : 
+                                <ActionButton disabled={!this.state.runEnabled}
                                             onClick={this.handleRoundInput}
                                             onKeyDown={this.handleResetInput}>
                                                 Next
-                                </NextButton>}
+                                </ActionButton>}
                     </ActionButtonsContainer>
                   
                 </div>
@@ -289,33 +256,33 @@ class TimerInputs extends React.Component {
                         <h2>Rounds</h2>
                   
                   <InputContainer>
-                  <Input type="Rounds" 
+                  <Input type="rounds" 
                             label="Intervals"
                             value={this.state.time.rounds} 
                             onChange={this.handleRoundInput}/>
                   </InputContainer> 
 
                  {/*******************************************
-                 * Rounds "go back" button. 
+                 * Rounds "go back" button 
                  * XY gets a "start" button; 
                  * Tabata gets a "next" button
                  * ******************************************/}
                   <ActionButtonsContainer>
-                    <AnimatedButton outline="2px solid #302F2F" 
+                    <Button outline="2px solid #302F2F" 
                                     outlineOffset="2px" 
                                     onClick={this.handleGoBack}>
                                     Back
-                    </AnimatedButton>
+                    </Button>
 
                     {this.state.timerType === "XY" ?
-                        <StartButton disabled={!this.state.roundsEnabled}
+                        <ActionButton type="Green" disabled={!this.state.roundsEnabled}
                                      onClick={(e) => this.props.onClick(this.state.time)}>
                                         Start
-                        </StartButton> : 
-                        <NextButton disabled={!this.state.roundsEnabled}
+                        </ActionButton> : 
+                        <ActionButton disabled={!this.state.roundsEnabled}
                                     onClick={this.handleRestInput}>
                                         Next
-                        </NextButton>}
+                        </ActionButton>}
                 </ActionButtonsContainer>
                 </div>
                 }
@@ -347,23 +314,21 @@ class TimerInputs extends React.Component {
                  * Rest phase "go back" and "start" buttons
                  * ******************************************/}
                   <ActionButtonsContainer>
-                    <AnimatedButton outline="2px solid #302F2F" 
+                    <Button outline="2px solid #302F2F" 
                                     outlineOffset="2px" 
                                     onClick={this.handleGoBack}>
                                     Back
-                    </AnimatedButton>
+                    </Button>
 
-                    
-                    <StartButton disabled={!this.state.restEnabled}
+                    <ActionButton disabled={!this.state.restEnabled}
                                  onClick={(e) => this.props.onClick(this.state.time)}>
                                  Start
-                    </StartButton> 
-                            
+                    </ActionButton> 
                 </ActionButtonsContainer>
                 </div>
                 }   
                 </div>  
-                } 
+            } 
       </div>
      
     )

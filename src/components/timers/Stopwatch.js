@@ -4,29 +4,13 @@ import Button from "../generic/Button";
 import TimerScreen from "../generic/TimerScreen";
 import styled from "styled-components";
 import TimerInputs from "../generic/TimerInputs";
-import { plus } from "../../utils/helpers";
+import { timeInSeconds } from "../../utils/helpers";
+import ActionButton from "../generic/ActionButton";
 
 
 
-const AnimatedButton = styled(Button)`
-    :hover {
-        border: 1px solid #1B457929;
-    }
-    :active {
-        transform: scale(1.05) translate(0px, 0px);
-    }
-    ::after {
-        z-index: -1;
-        transition: all .5s;
-    }
-    :hover::after {
-        transform: scale(0.5) translate(-1px, 0px);
-        
-    }  
-`;
 
-
-const ActionButtonsContainer = styled.div`
+const ButtonsContainer = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -52,11 +36,13 @@ class Stopwatch extends React.Component {
       hours : "00",
       minutes : "00", 
       seconds : "00",
+      action: "Rest",
       actionBtn : "New",
       actionBtnDisabled: false,
       timerStarted: false,
       timerPaused: false,
       totalSeconds: 0, 
+      
     }
   }
 
@@ -71,15 +57,17 @@ class Stopwatch extends React.Component {
       this.setState({
         actionBtn: "Start",
       })
+      this.handlePause();
     } else {
       this.setState({
         actionBtn: "Pause",
+        
       })
     }
   }
   
   handlePause = () => {
-    console.log('pause started');
+    
   }
 
   handleStopwatch = () => {
@@ -95,19 +83,18 @@ class Stopwatch extends React.Component {
   
 
   handleInputs = (e) => {
-    console.log(e);
-    
-     console.log(plus(4, 4));
     this.setState({
       hours: e.runHours,
       minutes: e.runMinutes,
       seconds: e.runSeconds,
+      totalSeconds: timeInSeconds(e.runHours, e.runMinutes, e.runSeconds),
       timerStarted: true,
       showTimer: true,
       showInputs: false, 
+     
       actionBtn: parseInt(this.state.hours) || 
                 parseInt(this.state.minutes) || 
-                parseInt(this.state.seconds) ? "Pause" : "New"
+                parseInt(this.state.seconds) ? "New" : "Pause"
       
     }) 
     
@@ -115,41 +102,42 @@ class Stopwatch extends React.Component {
   }
   
   render() {
+    const timerType = "Tabata";
+
     return (
       <div>
         
       <Device type="phone">
-     
             {this.state.showTimer  && 
+             
               <TimerScreen
                     showing={this.state.roundTimer} 
-                    type="Stopwatch"
+                    type={timerType}
                     hours={this.state.hours} 
                     minutes={this.state.minutes}
                     seconds={this.state.seconds}
-                    timerStarted={this.state.timerStarted}/> }
+                    timerStarted={this.state.timerStarted}
+                    action={this.state.action}
+                    totalSeconds={this.state.totalSeconds}
+                    /> }
                 
-                
-              
+          
               {this.state.showTimer && 
-              <ActionButtonsContainer>
-                  <AnimatedButton outline="2px solid #302F2F" 
+              <ButtonsContainer>
+                  <Button outline="2px solid #302F2F" 
                                   outlineOffset="2px" 
                                   onClick={this.handleReset}>
                                   Reset
-                  </AnimatedButton>
-                  <AnimatedButton disabled={this.state.actionBtnDisabled} 
-                                  outline={this.state.actionBtn === "Pause" ? "2px solid #592C0C96" : "2px solid #142F1B"}
-                                  outlineOffset="2px" 
-                                  background={this.state.actionBtn === "Pause" ? "#592C0C96" : "#142F1B"} 
-                                  color={this.state.actionBtn === "Pause" ? "#E19F5A" : "#94D769"}
-                                  onClick={this.handleAction}> 
-                                  {this.state.actionBtn}
-                  </AnimatedButton>
-              </ActionButtonsContainer>
+                  </Button>
+                  <ActionButton disabled={this.state.actionBtnDisabled} 
+                                type={this.state.actionBtn === "Pause" ? "Orange" : "Green"}
+                                onClick={this.handleAction}> 
+                                {this.state.actionBtn}
+                  </ActionButton>
+              </ButtonsContainer>
             } 
             {this.state.showInputs && 
-            <TimerInputs type="Tabata" showInputs={this.state.showInputs} onClick={this.handleInputs}/>}
+            <TimerInputs type={timerType} showInputs={this.state.showInputs} onClick={this.handleInputs}/>}
       </Device>    
       </div>
      

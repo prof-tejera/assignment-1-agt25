@@ -20,16 +20,13 @@ const InputField = styled.input`
   font-family: league-gothic;
   letter-spacing: 4px;
   margin: 0.4rem;
-  ::-webkit-outer-spin-button,
-  ::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-  
-  
-}
+    ::-webkit-outer-spin-button,
+    ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
   
 `;
-
 
 const InputWrapper = styled.div`
     flex-grow: 0;
@@ -37,9 +34,7 @@ const InputWrapper = styled.div`
     flex-basis: auto;
     align-self: auto;
     order: 0;
-    z-index: 1;
-   
-   
+    z-index: 1; 
 `;
 
 const Container = styled.div`
@@ -51,8 +46,6 @@ const Container = styled.div`
     align-content: center;
     margin: 0.5rem 0 2rem 0;
 
-
-   
 `;
 
 
@@ -64,22 +57,34 @@ class Input extends React.Component {
 
         return (
             <>
-            <Container>
-                <InputWrapper>
-                    <Row>
-            
-                    <label for={label}>{label}</label> 
-                    </Row>
-                    <Row>
-                    <InputField 
-                    onInput={(e) => {
-                        e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');}}
-                    value={value ? value : ""} id={`${type}`} maxLength="2" type={type} onChange={(e) => this.props.onChange(e.target)} 
-                    />
-                    </Row>
-                    
-                </InputWrapper>  
-            </Container>
+                <Container>
+                    <InputWrapper>
+                        {/* Input label row */}
+                        <Row>
+                        <label htmlFor={label}>{label}</label> 
+                        </Row>
+                        {/**************
+                         * Input field accepts 2 chars max;
+                         * 0-9 characters only;
+                         * I tries using a number input with a max and a min;
+                         * but for some reason, the max and mix did not work. 
+                         * So, I used a text input field since it was easier to style.
+                         * The number input field had these  annonying incrementation +- 
+                         * signs which took up white space even when I disabled them and set 
+                         * their webkit margins / display to none and 0. 
+                         * **************/}
+                        <Row>
+                            <InputField 
+                                value={value ? value : ""} 
+                                id={`${type}`} 
+                                maxLength="2" 
+                                type={type} 
+                                onChange={(e) => this.props.onChange(e.target)} 
+                                onInput={(e) => {
+                                    e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');}}/>
+                        </Row>
+                     </InputWrapper>  
+                </Container>
             </>
         );
     }
