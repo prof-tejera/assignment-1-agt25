@@ -63,10 +63,10 @@ const ProgressFill = styled.div`
 
 class ProgressBar extends React.Component {
   render() {
-    const { time, animationPlaying } = this.props.time;
+    
     return (
       <>
-        <ProgressFill time={time}/>
+        <ProgressFill/>
       </>
     );
   }

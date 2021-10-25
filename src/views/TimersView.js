@@ -11,6 +11,7 @@ import Tabata from "../components/timers/Tabata";
 import HeartRate from "../images/grey-heart-rate.svg";
 
 
+
 const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -19,39 +20,42 @@ const Container = styled.div`
   align-items: center;
   width: 85%;
   align-content: center;
-  border: 1px solid blue;
   margin: 0 auto;
   padding-top: 1rem;
 `
 
 const Intro = styled.div`
-  border: 1px solid green;
+  
   img {
     margin-top: -1rem;
   };
   ul {
     margin-bottom: 3rem;
     display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: baseline;
-  align-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: baseline;
+    align-content: center;
+    
     li {
       font-size: 21px;
       color: #50874A;
-      :hover, :active {
+      :hover {
         color: #33492C;
-      }
+      };
+      
     };
     
+    
   };
+ 
+  
 `;
 
 
 const Timer = styled.div`
-  border: 2px solid pink;
-  padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+  padding: 0.5rem 3rem 0.5rem 3rem;
   
   
 `;
@@ -101,7 +105,9 @@ class TimersView extends React.Component {
             <img src={HeartRate} width="350px" alt="Heart beat line vector"/>
             <ul>
               {timers.map((timer) => (
-                <li onClick={() => {this.setState({
+                <li 
+                  key={timer.title}
+                  onClick={() => {this.setState({
                   activeComponent: timer.title
                 })}}>
                 {timer.title}

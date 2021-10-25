@@ -136,7 +136,7 @@ class TimersScreen extends React.Component {
                     {/* Progress bar and status value (run, rest or the initial "stretch") */}
                     <ProgressWrapper>
                         <img width="232px" src={ProgressRate} alt="Progress Rate"></img>
-                        <ProgressBar time={totalSeconds}/>
+                        <ProgressBar/>
                         <p>{action}</p>
                     </ProgressWrapper>               
                 </Container>   

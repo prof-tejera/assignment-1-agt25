@@ -12,7 +12,8 @@ const deviceDimensions = {
     tablet: {
         width: 420,
         height: 640,
-    }
+    },
+    
 };
 
 

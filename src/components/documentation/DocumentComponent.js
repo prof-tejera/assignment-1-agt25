@@ -2,31 +2,50 @@ import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  border: 1px solid #121212;
   margin: 20px 0px;
+  border-top: 1px dotted #2B2F3BCF;
+  
 `;
 
 const Container = styled.div`
   padding: 20px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 `;
 
 const Title = styled.div`
   display: flex;
   justify-content: center;
   padding-top: 20px;
-  font-size: 1.3rem;
+  font-size: 1.7rem;
+  color: #588DE4;
+  font-family: Open Sans;
 `;
 
 const RenderComponent = styled.div`
   padding: 25px;
   display: flex;
+  margin: 1rem;
   align-items: center;
   
 `;
 
-const Documentation = styled.table``;
+const Documentation = styled.table`
+  height: 80%;
+  margin: 2rem;
+  border: none;
+  tr, th {
+    border: 1px solid white;
+  }
+  td {
+    border: 1px solid white;
+  }
+
+`;
 
 class DocumentComponent extends React.Component {
   render() {
@@ -45,7 +64,7 @@ class DocumentComponent extends React.Component {
             {this.props.propDocs.map((doc) => {
               return (
                 <tr>
-                  <td>{doc.prop}</td>
+                  <td><b>{doc.prop}</b></td>
                   <td>{doc.description}</td>
                   <td>{doc.type}</td>
                   <td>
