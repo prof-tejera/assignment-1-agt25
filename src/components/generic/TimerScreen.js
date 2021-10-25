@@ -11,7 +11,6 @@ import StretchingIcon from "../../images/stretching-icon.svg";
 import RestingIcon from "../../images/resting-icon.svg";
 
 
-
 const Container = styled.div`
     height: 65%;
     width: 100%;
@@ -65,7 +64,6 @@ const ProgressWrapper = styled.div`
     position: relative;
     top: -197px;
     left: 1px;
-
     p {
         position: relative;
         top: -25px;
@@ -83,16 +81,17 @@ const CircleWrapper = styled.div`
 `;
 
 
-class OperationsScreen extends React.Component {
+class TimersScreen extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
           seconds: 0, 
+          
         }
       }
     
-   
+    
     render() {
         const { hours, minutes, seconds, 
                 rounds, 
@@ -139,14 +138,12 @@ class OperationsScreen extends React.Component {
                         <img width="232px" src={ProgressRate} alt="Progress Rate"></img>
                         <ProgressBar time={totalSeconds}/>
                         <p>{action}</p>
-                    </ProgressWrapper>
-    
-                   
-                </Container>      
+                    </ProgressWrapper>               
+                </Container>   
             </>
         );
     }
 }
 
-export default OperationsScreen;
+export default TimersScreen;
 

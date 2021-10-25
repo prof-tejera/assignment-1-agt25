@@ -5,32 +5,33 @@ import styled from "styled-components";
 import DocumentationView from "./views/DocumentationView";
 import TimersView from "./views/TimersView";
 
+import Background from "./images/background.png";
+
 
 const Container = styled.div`
-background-image: linear-gradient(to left bottom, 
-  #f5fdff, #f4fefe, #f4fffc, #f6fff9, 
-  #f9fff6, #fbfff5, #fdfef4, #fffef3, 
-  #fffef3, #fffef3, #fffef3, #fffef3);
+  background-image: url(${Background});
+  background-repeat: none;
+  background-position: center;
+  background-size: cover;
   height: 100vh;
   overflow: auto;
   text-align: center;
   ul {
+    text-align: right;
     list-style: none;
-    padding: 0.25rem;
-    margin: 0;
+    padding-right: 2rem;
   };
   li {
     display: inline-block;
-    padding: 0.5rem;
-    
-    
+    padding: 0.1rem 1rem 0.1rem 1rem;
+    color: #414141; 
   };
+  a {
+    color: #414141;
+  }
   a:hover {
     color: orangered;
   };
-  nav {
-    margin: 0;
-  }
   h3 {
     font-family: Roboto;
     font-size: 23px;

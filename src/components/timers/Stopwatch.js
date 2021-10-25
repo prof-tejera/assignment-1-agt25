@@ -9,7 +9,6 @@ import ActionButton from "../generic/ActionButton";
 
 
 
-
 const ButtonsContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -69,18 +68,10 @@ class Stopwatch extends React.Component {
   handlePause = () => {
     
   }
-
-  handleStopwatch = () => {
-    console.log('Timer started!!!!');
-    this.setState({actionBtn: "Pause"});
-  }
-
   handleReset = () => {
     this.setState({hours: "00", minutes: "00", seconds: "00"});
     this.setState({actionBtn: "New"});
   }
-
-  
 
   handleInputs = (e) => {
     this.setState({

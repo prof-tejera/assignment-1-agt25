@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { StopwatchFill, HourglassTop, ArrowRepeat, ClockHistory } from 'react-bootstrap-icons';
 
+import Stopwatch from "../timers/Stopwatch";
+import Countdown from "../timers/Countdown";
+import XY from "../timers/XY";
+import Tabata from "../timers/Tabata";
 
 const Container = styled.div`
 display: inline-flex;
@@ -41,57 +45,7 @@ class BottomNav extends React.Component {
         
             <>
            <Container>
-           <Router>
-        <nav>
-          <ul>
-            <li>
-              <NavLink to="/">
-                <StopwatchFill size={20}/>
-                <div>Stopwatch
-                  </div>
-                </NavLink>
-            </li>
-            <li>
-              <NavLink to="/Countdown">
-              <HourglassTop size={20}/>
-                <div>Countdown
-                  </div>
-              </NavLink>
-            </li>
-            <li>
-            <NavLink to="/">
-              <ArrowRepeat size={20}/>
-                <div>Intervals
-                  </div>
-              </NavLink>
-            </li>
-            <li>
-            <NavLink to="/">
-              <ClockHistory size={20}/>
-                <div>Tabata
-                  </div>
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
-        <Switch>
-          <Route path="/">
            
-            
-          </Route>
-          <Route path="/">
-          
-           
-          </Route>
-          <Route path="/">
-            
-          </Route>
-
-          <Route path="/">
-          
-          </Route>
-        </Switch>
-      </Router> 
         </Container>
         </>
         );

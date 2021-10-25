@@ -10,7 +10,7 @@ const darkOrangeColor = "#BF3604";
 
 const ProgressFill = styled.div`
     position: relative;
-    top: -23px;
+    top: -25px;
     width: 96%;
     background-color: #65A03178;
     animation: progressAnimation ${(props) => props.time}s;
