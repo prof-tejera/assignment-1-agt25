@@ -102,7 +102,7 @@ class TimersScreen extends React.Component {
                 totalSeconds, 
                 type, 
                 action, 
-                progressBar
+                progressPlaying
                  } = this.props; 
         
         return (
@@ -143,7 +143,7 @@ class TimersScreen extends React.Component {
                         <img width="232px" src={ProgressRate} alt="Progress Rate"></img>
                        
                         <div>
-                        <ProgressBar playing={true} totalSeconds={totalSeconds}/>
+                        <ProgressBar playing={progressPlaying} totalSeconds={totalSeconds}/>
                         </div>
                         <p>{action}</p>
                     </ProgressWrapper>               

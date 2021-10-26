@@ -1,11 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Timer from "../components/generic/Timer";
 
-export default class componentName extends Component {
+
+
+class DesignView extends Component {
   render() {
     return (
       <>
-        <h2>hello</h2>
+        <Timer timerType="Stopwatch"/>
       </>
     )
   }
 }
+
+export default DesignView; 

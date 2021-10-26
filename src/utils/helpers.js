@@ -11,3 +11,4 @@ export function timeInSeconds(hours, minutes, seconds) {
     return totalSeconds;
 }
 
+// setTimerInputs 

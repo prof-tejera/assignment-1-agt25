@@ -19,7 +19,7 @@ class Stopwatch extends React.Component {
       hours : "00",
       minutes : "00", 
       seconds : "00",
-      progressBar: false, 
+      progressPlaying: false, 
       actionHelper: "Press New",
       actionBtn : "New",
       actionBtnDisabled: false,
@@ -73,14 +73,15 @@ class Stopwatch extends React.Component {
       actionBtn: e.started ? "Pause" : "New",
       totalSeconds: timeInSeconds(e.runHours, e.runMinutes, e.runSeconds),
       actionHelper: e.started ? "Run" : "Press New"
-      
     }) 
+    // if timerState is true, call the countUp function 
+    // if user clicks pause, freeze the current time 
     
     
   }
   
   render() {
-    const timerType = "Tabata";
+    const timerType = "Stopwatch";
 
     return (
       <div>
@@ -96,7 +97,7 @@ class Stopwatch extends React.Component {
                     timerStarted={this.state.timerStarted}
                     action={this.state.actionHelper}
                     totalSeconds={this.state.totalSeconds}
-                    progressBar={this.state.progressBar}
+                    progressPlaying={this.state.progressPlaying}
                     /> }
                 
           
