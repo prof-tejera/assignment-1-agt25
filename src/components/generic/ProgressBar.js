@@ -8,65 +8,51 @@ const darkOrangeColor = "#BF3604";
 
 
 
-const ProgressFill = styled.div`
-    position: relative;
-    top: -25px;
-    width: 96%;
-    background-color: #65A03178;
-    animation: progressAnimation ${(props) => props.time}s;
-    animation-play-state: running;
-    padding: 0.9px;
-    border-radius: 30px;
-    
-    div {
-        height: 16px;
+const ProgressContainer = styled.div`
+    width: 225px; 
+    text-align: center;
 
-        border-radius: 30px;
-        background-color: #bf3604;
-        transition: 0.1s linear;
-        transition-property: width, background-color;
-        width: 85%;
-    };
+`;
+
+// Progress2 and progress-moved
+const ProgressDiv = styled.div`
+    padding: 1px;
+    border-radius: 30px; 
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    background-color: #95CF637D;
+    animation: progressAnimation ${({seconds}) => seconds ? `${seconds}s` : "0"};
+    animation-play-state: ${({playing}) => playing ? "running" : "paused"};
 
     @keyframes progressAnimation {
         0% {
           width: 0%;
           background-color: ${darkOrangeColor};
         }
-        12.5% {
-            width: 12.5%;
-            background-color: ${lightOrangeColor};
-        }
-        25% {
-            width: 25%;
-            background-color: ${darkOrangeColor};
-        }
-        50% {
-            width: 50%;
-            background-color: ${lightOrangeColor};
-        }
-        62.5% {
-            width: 62.5%;
-            background-color: ${darkOrangeColor};
-        }
-        75% {
-            width: 75%;
-            background-color: ${lightOrangeColor};
-        }
         100% {
           width: 100%;
-          background-color: ${darkOrangeColor};
+          background-color: ${lightOrangeColor};
         }
       }
+      
+      
 `;
+    
+
+
 
 
 class ProgressBar extends React.Component {
   render() {
-    
+    const { playing, totalSeconds } = this.props;
     return (
       <>
-        <ProgressFill/>
+        <ProgressContainer>
+            <ProgressDiv playing={playing} seconds={totalSeconds}>
+            </ProgressDiv>
+        </ProgressContainer>
+        
       </>
     );
   }

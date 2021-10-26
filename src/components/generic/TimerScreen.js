@@ -66,9 +66,13 @@ const ProgressWrapper = styled.div`
     left: 1px;
     p {
         position: relative;
-        top: -25px;
-        font-size: 26px;  
-    }      
+        top: -20px;
+        font-size: ${({action}) => action.includes("Press") ? "20px" : "22px"};  
+    }
+    div {
+        position: relative;
+        top: -7.5px;
+    }
 `;
 
 
@@ -98,6 +102,7 @@ class TimersScreen extends React.Component {
                 totalSeconds, 
                 type, 
                 action, 
+                progressBar
                  } = this.props; 
         
         return (
@@ -119,7 +124,7 @@ class TimersScreen extends React.Component {
                         <CircleWrapper background="#1A1A1A">
                             <ActionsCircle border="1px dotted #1C91F2"> 
                             {action === "Run" &&  <img src={RunningIcon} alt="Running Stick Figure"/>}
-                            {action === "Stretch" && <img src={StretchingIcon} alt="Stretching Stick Figure"/>}
+                            {action === "Press New" && <img src={StretchingIcon} alt="Stretching Stick Figure"/>}
                             {action === "Rest" && <img src={RestingIcon} alt="Standing Stick Figure"/>}
                             </ActionsCircle>
                         </CircleWrapper>
@@ -134,9 +139,12 @@ class TimersScreen extends React.Component {
 
 
                     {/* Progress bar and status value (run, rest or the initial "stretch") */}
-                    <ProgressWrapper>
+                    <ProgressWrapper action={action}>
                         <img width="232px" src={ProgressRate} alt="Progress Rate"></img>
-                        <ProgressBar/>
+                       
+                        <div>
+                        <ProgressBar playing={true} totalSeconds={totalSeconds}/>
+                        </div>
                         <p>{action}</p>
                     </ProgressWrapper>               
                 </Container>   

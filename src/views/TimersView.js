@@ -11,11 +11,10 @@ import Tabata from "../components/timers/Tabata";
 import HeartRate from "../images/grey-heart-rate.svg";
 
 
-
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   width: 85%;
@@ -56,7 +55,6 @@ const Intro = styled.div`
 
 const Timer = styled.div`
   padding: 0.5rem 3rem 0.5rem 3rem;
-  
   
 `;
 
@@ -99,6 +97,7 @@ class TimersView extends React.Component {
   return (
       <>
       {this.state.fontsLoaded && 
+       
         <Container>
           <Intro>
             <TimerTitle>Timers</TimerTitle>

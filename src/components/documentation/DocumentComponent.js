@@ -1,9 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
+const colors = {
+  themeBlue: "#588DE4",
+  darkGrey: "#2B2F3BCF",
+  lightGrey: "#B5B1B2",
+  white: "F1F1F1"
+}
+
 const Wrapper = styled.div`
   margin: 20px 0px;
-  border-top: 1px dotted #2B2F3BCF;
+  border-top: 1px dotted ${colors.darkGrey};
   
 `;
 
@@ -22,7 +29,7 @@ const Title = styled.div`
   justify-content: center;
   padding-top: 20px;
   font-size: 1.7rem;
-  color: #588DE4;
+  color: ${colors.themeBlue};
   font-family: Open Sans;
 `;
 
@@ -38,11 +45,12 @@ const Documentation = styled.table`
   height: 80%;
   margin: 2rem;
   border: none;
+  color: ${colors.white};
   tr, th {
-    border: 1px solid white;
+    border: 1px solid ${colors.lightGrey};
   }
   td {
-    border: 1px solid white;
+    border: 1px solid ${colors.lightGrey};
   }
 
 `;

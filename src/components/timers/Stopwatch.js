@@ -1,29 +1,13 @@
 import React from "react";
+
 import Device from "../generic/Device";
 import Button from "../generic/Button";
 import TimerScreen from "../generic/TimerScreen";
-import styled from "styled-components";
 import TimerInputs from "../generic/TimerInputs";
-import { timeInSeconds } from "../../utils/helpers";
 import ActionButton from "../generic/ActionButton";
+import ActionButtonsContainer from "../generic/ActionButtonsContainer";
 
-
-
-const ButtonsContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: flex-start;
-    align-content: center;
-    width: 100%;
-    margin: 0 auto;
-    position: relative;
-    margin-top: 2.5rem;
-    top: -6.5rem;  
-`;
-
-
+import { timeInSeconds } from "../../utils/helpers";
 
 
 class Stopwatch extends React.Component {
@@ -35,7 +19,8 @@ class Stopwatch extends React.Component {
       hours : "00",
       minutes : "00", 
       seconds : "00",
-      action: "Rest",
+      progressBar: false, 
+      actionHelper: "Press New",
       actionBtn : "New",
       actionBtnDisabled: false,
       timerStarted: false,
@@ -69,8 +54,12 @@ class Stopwatch extends React.Component {
     
   }
   handleReset = () => {
-    this.setState({hours: "00", minutes: "00", seconds: "00"});
-    this.setState({actionBtn: "New"});
+    this.setState({hours: "00", 
+                  minutes: "00", 
+                  seconds: "00",
+                  actionBtn: "New",
+                  actionHelper: "Press New"
+                });
   }
 
   handleInputs = (e) => {
@@ -78,14 +67,12 @@ class Stopwatch extends React.Component {
       hours: e.runHours,
       minutes: e.runMinutes,
       seconds: e.runSeconds,
-      totalSeconds: timeInSeconds(e.runHours, e.runMinutes, e.runSeconds),
-      timerStarted: true,
+      timerStarted: e.started,
       showTimer: true,
       showInputs: false, 
-     
-      actionBtn: parseInt(this.state.hours) || 
-                parseInt(this.state.minutes) || 
-                parseInt(this.state.seconds) ? "New" : "Pause"
+      actionBtn: e.started ? "Pause" : "New",
+      totalSeconds: timeInSeconds(e.runHours, e.runMinutes, e.runSeconds),
+      actionHelper: e.started ? "Run" : "Press New"
       
     }) 
     
@@ -100,7 +87,6 @@ class Stopwatch extends React.Component {
         
       <Device type="phone">
             {this.state.showTimer  && 
-             
               <TimerScreen
                     showing={this.state.roundTimer} 
                     type={timerType}
@@ -108,13 +94,14 @@ class Stopwatch extends React.Component {
                     minutes={this.state.minutes}
                     seconds={this.state.seconds}
                     timerStarted={this.state.timerStarted}
-                    action={this.state.action}
+                    action={this.state.actionHelper}
                     totalSeconds={this.state.totalSeconds}
+                    progressBar={this.state.progressBar}
                     /> }
                 
           
               {this.state.showTimer && 
-              <ButtonsContainer>
+              <ActionButtonsContainer top="-6.5rem">
                   <Button outline="2px solid #302F2F" 
                                   outlineOffset="2px" 
                                   onClick={this.handleReset}>
@@ -125,7 +112,7 @@ class Stopwatch extends React.Component {
                                 onClick={this.handleAction}> 
                                 {this.state.actionBtn}
                   </ActionButton>
-              </ButtonsContainer>
+              </ActionButtonsContainer>
             } 
             {this.state.showInputs && 
             <TimerInputs type={timerType} showInputs={this.state.showInputs} onClick={this.handleInputs}/>}

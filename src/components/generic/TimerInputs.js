@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Input from "../generic/Input";
 import Button from "../generic/Button";
 import ActionButton from "./ActionButton";
+import ActionButtonsContainer from "./ActionButtonsContainer";
 
 
 const InputContainer = styled.div`
@@ -20,20 +21,6 @@ const InputContainer = styled.div`
 
 `;
 
-
-const ActionButtonsContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: flex-start;
-    align-content: center;
-    width: 100%;
-    margin: 0 auto;
-    position: relative;
-    margin-top: 2.5rem;
-    top: -6.5rem;  
-`;
 
 
 class TimerInputs extends React.Component {
@@ -51,20 +38,18 @@ class TimerInputs extends React.Component {
             roundsPhase: false,
             restTimePhase: false,
     
-            // Actions buttons 
+            // Actions buttons
             runEnabled: false, 
             roundsEnabled: false,
             restEnabled: false,
 
             // Timer 
             time: {
-                started: false, 
+                started: true, 
                 runHours: "00",
                 runMinutes: "00",
                 runSeconds: "00",
-
                 rounds: "00", 
-
                 restHours: "00",
                 restMinutes: "00",
                 restSeconds: "00",
@@ -156,6 +141,7 @@ class TimerInputs extends React.Component {
 
   
   handleGoBack() {
+      // If the current state is runTimePhase, reset the state for empty Timer Screen
     if (this.state.runTimePhase) {
         let resetTimeObj = {
             ...this.state.time, 
@@ -166,14 +152,17 @@ class TimerInputs extends React.Component {
             restHours: "00",
             restMinutes: "00",
             restSeconds: "00",
+            started: false,
         }
         this.setState({
             time: resetTimeObj, 
             runEnabled: false, 
             roundsEnabled: false,
             restEnabled: false,
+            
         }, function() {
-            this.props.onClick(this.state.time);
+            
+            this.props.onClick(this.state.time, this.state.time.started);
         })
         
     } else if (this.state.roundsPhase) {
@@ -224,7 +213,7 @@ class TimerInputs extends React.Component {
                  * Reset and conditional Start / Next button 
                  * depending on the timer type 
                  * ***************************************/}
-                    <ActionButtonsContainer>
+                    <ActionButtonsContainer top="-6.5rem">
                         <Button outline="2px solid #302F2F" 
                                         outlineOffset="2px" 
                                         onClick={this.handleGoBack}>
@@ -267,7 +256,7 @@ class TimerInputs extends React.Component {
                  * XY gets a "start" button; 
                  * Tabata gets a "next" button
                  * ******************************************/}
-                  <ActionButtonsContainer>
+                  <ActionButtonsContainer top="-6.5rem">
                     <Button outline="2px solid #302F2F" 
                                     outlineOffset="2px" 
                                     onClick={this.handleGoBack}>
@@ -313,7 +302,7 @@ class TimerInputs extends React.Component {
                 {/*******************************************
                  * Rest phase "go back" and "start" buttons
                  * ******************************************/}
-                  <ActionButtonsContainer>
+                  <ActionButtonsContainer top="-6.5rem">
                     <Button outline="2px solid #302F2F" 
                                     outlineOffset="2px" 
                                     onClick={this.handleGoBack}>
