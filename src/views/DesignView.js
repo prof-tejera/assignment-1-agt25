@@ -14,6 +14,8 @@ const Container = styled.div`
   width: 100%;
   align-content: flex-start;
   text-align: left;
+  border-bottom: 1px dotted #C1BEBE;
+  padding-bottom: 2rem;
   h4 {
     color: #545454;
     font-weight: 600;
@@ -28,12 +30,12 @@ const Header = styled.div`
   text-align: center;
   margin: auto;
   h1 {
-    color: #4877BA;
+    color: #1A1A1A;
     font-size: 55px;
   }
   h2 {
     margin-top: -4.5rem !important;
-    color: #5D8551 !important;
+    color: #A09D9D !important;
   }
   img {
     position: relative;
@@ -119,6 +121,48 @@ const SecondaryContainer = styled(Container)`
       
     }
   }
+
+`;
+
+const Explanations = styled.div`
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem 3rem 2rem 3rem;
+  background: white;
+  h2 {
+    margin-top: -1rem;
+    padding: 2px;
+    color: #303030 !important;
+    border-top: 1px dotted #C1BEBE;
+    border-bottom: 1px dotted #C1BEBE;
+  }
+
+`;
+
+const NewsPaper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+  background: white;
+  line-height: 1.5rem;
+  div {
+    padding: 2rem;
+    max-width: 55vw;
+  };
+  h2 {
+    color: black !important;
+  };
+  h3 {
+    color: #302F2F !important;
+    padding: 2.5rem 0 1rem 0;
+  }
+  
+  
+  
+
 
 `;
 
@@ -254,9 +298,119 @@ class DesignView extends Component {
           </GreysContainer>
          
        </div>
-
       </Container>
-       
+
+        <Explanations>
+          <div>
+        <RobotoH1>Branding</RobotoH1>
+        <h2> \ Color Psychology </h2>
+        </div>
+        </Explanations>
+
+        <NewsPaper>
+          <div>
+            <h2>Blue.</h2>
+            <article>
+              <p>
+              When I think of fitness and exercise, I think of action — be it dreadful or freeing. 
+              Blue represents freedom, inspiration, confidence, and the element of water. 
+              Exercise helps replenish our bodies, releases endorphins, and requires constant hydration. 
+              Blue inspires us to explore: the depth and the mystery of the ocean; 
+              the sense of freedom when staring at blue skies — birds in action, 
+              and clouds that serve as a reminder that the planet is constantly moving — 
+              nothing is still. </p>
+              
+              <p>
+              Blue elicits action. Yet, due to its calming hues, blue motivates without being as 
+              overwhelming as the passionate yet dangerous red, or the vibrant yellow. 
+              Let’s face it; a lot of us exhaust our wellbeing via the mental gymnastics 
+              that play out when deciding to go for a run, or exercise. 
+              The last thing a user needs to face is an overwhelming interface. 
+             </p>
+
+             <p>
+             In effort of further eliciting action, a centered heartbeat line highlights the interface. 
+             It’s a subtle yet powerful way of reminding the user about the health benefits 
+             when dreading to “start” their fitness activity. 
+             </p>
+             <p>
+             The more inclined they are to exercise, the more likely they’ll use the app. 
+             </p>
+              </article>
+          </div>
+
+          <div>
+            <h2>Green.</h2>
+            <article>
+              <p>
+              Like blue, green is considered a refreshening color. 
+              It signifies health and nature. Some users exercise in enclosed spaces, sometimes yearning for beautiful, natural sights; 
+              others take on the curves and edges mother nature offers. 
+              It is no wonder that many treadmill machines provide virtual scenery for their users. 
+              </p>
+
+              <p>
+              According to <a href="https://www.forbes.com/sites/simonchandler/2020/06/16/virtual-reality-makes-exercise-more-enjoyable-and-less-tiring-study-finds/?sh=30a44d64c156">
+                Forbes</a>, virtual scenery makes exercise more enjoyable. 
+              Extracting from two of nature’s primary colors, I decided on the combination of blue for the brand identity, 
+              and sprouts of green to symbolically convey nature. 
+              Green, also representing action, is intuitively incorporated on the “Start” button. 
+
+              </p>
+            </article>
+          </div>
+
+          
+
+        </NewsPaper>
+          
+
+        <NewsPaper>
+        <div>
+            <h2>Orange.</h2>
+            <article>
+              <p>
+              Orange is complimentary to blue. 
+              Since the app’s blue and greens are light and vibrant, I incorporated a desaturated orange-brown 
+              background color for the “Pause” button, complimented by orange text. 
+              </p>
+
+              <p>
+              Historically, red is most used on destructive functions. 
+              However, the “Pause” button is not destructive, as the user can resume the timer. 
+              Additionally, red is a color that is often associated with food brands (McDonalds, Wendy’s, In-n-Out, etc.). 
+              Red makes you feel hungry — not the optimal solution for a fitness app. 
+              But orange, too, can also be found across many food brands. 
+              For this reason, the app’s subtle orange-brown deviates from the conventional orange-yellow hue. 
+              </p>
+            </article>
+          </div>
+
+          <div>
+            <h2>Greys.</h2>
+            <article>
+              <p>
+              Various shades of grey, from almost-black to a faint-white, make up the background of the app. 
+              For the majority of users, dark mode is easiest on the eyes. 
+              But a pure black background with pure white text is painful to look at. 
+              For a pleasing interface, I’ve avoided high contrast shades. 
+              <br></br>
+              
+              </p>
+
+              <p>
+              <h3>All of the foreground / background combinations used are WCAG AA compliant.</h3> 
+              </p>
+            </article>
+          </div>
+
+
+        </NewsPaper>
+
+
+        
+      
+     
       </>
     )
   }
