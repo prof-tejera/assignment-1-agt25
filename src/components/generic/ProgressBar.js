@@ -7,21 +7,19 @@ const lightOrangeColor = "#F2AA4C";
 const darkOrangeColor = "#BF3604"; 
 
 
-
 const ProgressContainer = styled.div`
     width: 225px; 
     text-align: center;
 
 `;
 
-// Progress2 and progress-moved
 const ProgressDiv = styled.div`
     padding: 1px;
     border-radius: 30px; 
     background: rgba(0, 0, 0, 0.25);
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
     width: 100%;
-    background-color: #95CF637D;
+    background-color: #95CF637F;
     animation: progressAnimation ${({seconds}) => seconds ? `${seconds}s` : "0"};
     animation-play-state: ${({playing}) => playing ? "running" : "paused"};
 
@@ -34,14 +32,9 @@ const ProgressDiv = styled.div`
           width: 100%;
           background-color: ${lightOrangeColor};
         }
-      }
-      
-      
+      }   
 `;
     
-
-
-
 
 class ProgressBar extends React.Component {
   render() {
@@ -58,8 +51,16 @@ class ProgressBar extends React.Component {
   }
 }
 
+
 ProgressBar.propTypes = {
-    time: PropTypes.number,
+    totalSeconds: PropTypes.number,
+    playing: PropTypes.bool, 
   };
+
+
+ProgressBar.propTypes = {
+    totalSeconds: 0, 
+    playing: false
+}
 
 export default ProgressBar;

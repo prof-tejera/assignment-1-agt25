@@ -116,7 +116,7 @@ class TimersScreen extends React.Component {
                         {/* Left side: Conditional 'Rounds' status used by XY and TABATA */}
                         {type === "XY" || type === "Tabata" ? 
                             <CircleWrapper background="#1A1A1A">
-                                <ActionsCircle>{rounds ? rounds : "0"}
+                                <ActionsCircle fontSize="50px">{rounds ? rounds : "0"}
                                 </ActionsCircle> 
                              </CircleWrapper> : <CircleWrapper/> }
 

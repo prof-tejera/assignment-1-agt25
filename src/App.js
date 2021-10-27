@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, NavLink, Redirect } from "react-router-dom";
 import styled from "styled-components";
 
 import DocumentationView from "./views/DocumentationView";
@@ -7,6 +7,7 @@ import TimersView from "./views/TimersView";
 import DesignView from "./views/DesignView";
 
 import Background from "./images/background.png";
+import Timer from "./components/generic/Timer";
 
 
 const Container = styled.div`
@@ -70,7 +71,7 @@ function App() {
         <nav>
           <ul>
             <li>
-              <StyledLink to="/">Timers</StyledLink>
+              <StyledLink to="/timers">Timers</StyledLink>
             </li>
             <li>
               <StyledLink to="/design">Design</StyledLink>
@@ -84,10 +85,13 @@ function App() {
           </ul>
         </nav>
         <Switch>
+        <Route exact path="/">
+2           <Redirect to="/timers" />
+3         </Route>
           <Route exact path="/docs">
             <DocumentationView />
           </Route>
-          <Route exact path="/">
+          <Route exact path="/timers">
             <TimersView />
           </Route>
           <Route exact path="/design">
@@ -97,8 +101,10 @@ function App() {
           
         </Switch>
       </Router>
-      
+ 
+       
     </Container>
+      
   );
 }
 

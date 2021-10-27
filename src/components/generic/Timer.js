@@ -1,13 +1,29 @@
 import React from "react";
+import PropTypes from "prop-types";
+
+import styled from "styled-components";
 
 import Device from "./Device";
 import Button from "./Button";
 import TimerScreen from "./TimerScreen";
 import TimerInputs from "./TimerInputs";
 import ActionButton from "./ActionButton";
-import ActionButtonsContainer from "./ActionButtonsContainer";
 
 import { timeInSeconds } from "../../utils/helpers";
+
+const ButtonsContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 2.5rem;
+    top: -6.5rem;
+`;
 
 
 class Timer extends React.Component {
@@ -22,18 +38,25 @@ class Timer extends React.Component {
       showTimer: true, 
       showInputs: false, 
 
-      // Runtime for all timers 
-      runHours : "00",
-      runMinutes : "00", 
-      runSeconds : "00",
+      // Run time for all timers 
+      run: {
+        runHours : "00",
+        runMinutes : "00", 
+        runSeconds : "00",
+      },
+
+      // Rest time for Tabita
+      rest: {
+        restHours: "00",
+        restMinutes: "00", 
+        restSeconds: "00",
+      },
       
-      // Rounds for XY and Tabita
+      // Rounds
       rounds: 0, 
 
-      // Restime for Tabita 
-      restHours: "00",
-      restMinutes: "00", 
-      restSeconds: "00",
+      // Current time object showing
+      current: "run",
 
       // Status helpers
       actionHelper: "Press New",
@@ -41,16 +64,11 @@ class Timer extends React.Component {
       actionBtnDisabled: false,
       progressPlaying: false, 
     
-      
       // Timer operations triggers
       timerStarted: false,
       timerPaused: false,
       totalSeconds: 0, 
 
-      // Active time currently showing
-      hours: "00",
-      minutes: "00",
-      seconds: "00"
     }
   }
 
@@ -103,22 +121,28 @@ class Timer extends React.Component {
    * this resets the state values 
    ****************************************/
   handleReset = () => {
-    this.setState({
-        runHours: "00", 
-        runMinutes: "00", 
+    let runObj = { 
+        ...this.state.run,
+        runHours: "00",
+        runMinutes: "00",
         runSeconds: "00",
-
-        rounds: null, 
-
+    }; 
+    let restObj = {
+        ...this.state.rest, 
         restHours: "00",
-        restMinutes: "00", 
+        restMinutes: "00",
         restSeconds: "00",
+    };
 
+    this.setState({
+        run: runObj,
+        rest: restObj,
+        rounds: 0, 
         actionHelper: "Press New",
         actionBtn : "New",
+        current: "run",
         actionBtnDisabled: false,
         progressPlaying: false, 
-
         timerStarted: false,
         timerPaused: false,
         totalSeconds: 0, 
@@ -131,34 +155,49 @@ class Timer extends React.Component {
    * update the state to reflect the new values
    * *****************************************/
   handleInputs = (e) => {
-    console.log(e);
+
+    // Compose the run and rest time objects 
+    let runObj = { 
+        ...this.state.run,
+        runHours: e.runHours,
+        runMinutes: e.runMinutes,
+        runSeconds: e.runSeconds
+    }; 
+    let restObj = {
+        ...this.state.rest, 
+        restHours: e.restHours,
+        restMinutes: e.restMinutes,
+        restSeconds: e.restSeconds,
+    };
+
     this.setState({
+
+      // Component visibility 
       showTimer: true,
       showInputs: false,
 
-      runHours: e.runHours,
-      runMinutes: e.runMinutes,
-      runSeconds: e.runSeconds,
-     
+      // Time objects and rounds 
+      run: runObj, 
+      rest: restObj,
       rounds: e.rounds, 
-
-      restHours: e.restHours,
-      restMinutes: e.restMinutes,
-      restSeconds: e.restSeconds,
-
-
+      
+      // Action buttons 
       actionBtn: e.started ? "Pause" : "New",
-      totalSeconds: timeInSeconds(e.runHours, e.runMinutes, e.runSeconds),
       actionHelper: e.started ? "Run" : "Press New",
 
+      // Progress bar values
+      totalSeconds: timeInSeconds(e.runHours, e.runMinutes, e.runSeconds),
       progressPlaying: true, 
+
+      // Announce start 
       timerStarted: e.started,
 
     }, function() {
         // After setting the state, call handleRun 
         console.log(this.state);
-        this.handleTimer();
-
+        if (this.state.timerStarted) {
+            this.handleTimer();
+        }
     })
     
     // if timerState is true, call the countUp function 
@@ -168,33 +207,69 @@ class Timer extends React.Component {
     // if timerType is Tabata, call handleRun, then set to rest, etc. 
     
     
+  };
+
+  handleStopwatch = (runTime) => {
+    let {runHours, runMinutes, runSeconds } = runTime; 
+    console.log(runHours, runMinutes, runSeconds);
+    // convert the runTime to seconds, call it target
+    // start timeElapsed at 0
+    // set a counter while 0 < target
+        // each iteration, set the state + 1
+        // if seconds are 59, set seconds to 0, and minute to +1
+        // if minutes are 59 and seconds are 59, set hour to +1
+
+  };
+
+  handleCountdown = (runTime) => {
+    let {runHours, runMinutes, runSeconds } = runTime; 
+    console.log(runHours, runMinutes, runSeconds);
+  };
+
+  handleXY = (runTime, rounds) => {
+    let { runHours, runMinutes, runSeconds } = runTime; 
+    console.log(runHours, runMinutes, runSeconds, rounds);
+    // calls handleCountdown in a loop 
+
+  };
+
+  handleTabata = (runTime, rounds, restTime) => {
+    let { runHours, runMinutes, runSeconds } = runTime; 
+    let { restHours, restMinutes, restSeconds } = restTime; 
+    // call handleCountdown in a loop for runTime
+    // then for restTime
   }
 
   handleTimer = () => {
     if (this.state.timerType === "Stopwatch") {
-        // call the countUp function 
+        this.handleStopwatch(this.state.run);
     } else if (this.state.timerType === "Countdown") {
-        // call the countDown function 
+        this.handleCountdown(this.state.run); 
     } else if (this.state.timerType === "XY") {
         // call the XY function which calls countdown an X amount of times
+    } else {
+        // call tabata which counts down an X amount of times and rests 
     }
   }
   
   render() {
     const timerType = this.state.timerType;
+    const { runHours, runMinutes, runSeconds } = this.state.run; 
+    const { restHours, restMinutes, restSeconds } = this.state.rest;
     
 
     return (
       <div>
         
-      <Device type="phone">
+      <Device type="phone" currentTimer={timerType}>
             {this.state.showTimer  && 
               <TimerScreen
                     showing={this.state.roundTimer} 
                     type={timerType}
-                    hours={this.state.runHours} 
-                    minutes={this.state.runMinutes}
-                    seconds={this.state.runSeconds}
+                    hours={this.state.current === "run" ? runHours : restHours} 
+                    minutes={this.state.current === "run" ? runMinutes : restMinutes}
+                    seconds={this.state.current === "run" ? runSeconds : restSeconds}
+                    rounds={this.state.rounds}
                     timerStarted={this.state.timerStarted}
                     action={this.state.actionHelper}
                     totalSeconds={this.state.totalSeconds}
@@ -203,7 +278,7 @@ class Timer extends React.Component {
                 
           
               {this.state.showTimer && 
-              <ActionButtonsContainer top="-6.5rem">
+              <ButtonsContainer>
                   <Button outline="2px solid #302F2F" 
                                   outlineOffset="2px" 
                                   onClick={this.handleReset}>
@@ -214,7 +289,7 @@ class Timer extends React.Component {
                                 onClick={this.handleActionButton}> 
                                 {this.state.actionBtn}
                   </ActionButton>
-              </ActionButtonsContainer>
+              </ButtonsContainer>
             } 
             {this.state.showInputs && 
             <TimerInputs type={timerType} showInputs={this.state.showInputs} onClick={this.handleInputs}/>}
@@ -224,5 +299,16 @@ class Timer extends React.Component {
     )
   }
 }
+
+
+
+Timer.propTypes = {
+    timerType: PropTypes.oneOf(["Stopwatch", "Countdown", "XY", "Tabata"])
+}
+
+Timer.defaultProps = {
+    timerType: "Stopwatch"
+}
+
 
 export default Timer; 

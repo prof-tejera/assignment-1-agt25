@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import styled from "styled-components";
 import {Row} from "react-bootstrap";
+
 
 const InputField = styled.input`
   z-index: 1; 
@@ -53,8 +55,7 @@ const Container = styled.div`
 class Input extends React.Component {
     
     render() {
-            const { type, label, value } = this.props;
-
+        const { type, label, value } = this.props;
         return (
             <>
                 <Container>
@@ -69,7 +70,7 @@ class Input extends React.Component {
                          * I tries using a number input with a max and a min;
                          * but for some reason, the max and mix did not work. 
                          * So, I used a text input field since it was easier to style.
-                         * The number input field had these  annonying incrementation +- 
+                         * The number input field had these annonying incrementation +- 
                          * signs which took up white space even when I disabled them and set 
                          * their webkit margins / display to none and 0. 
                          * **************/}
@@ -102,6 +103,12 @@ Input.propTypes = {
         PropTypes.number
     ])
   };
+
+Input.defaultProps = {
+    type: "runHours",
+    label: "Hour",
+    value: "",
+}
 
 
 

@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import BottomNav from "./BottomNav"
-
 const deviceDimensions = {
     phone: {
         width: 320,
@@ -81,7 +79,7 @@ const Camera = styled.div`
     border: 1px inset #25374E;
 `;
 
-const Nav = styled.div`
+const NavWrapper = styled.div`
     background: #323131;
     position: absolute;
     bottom: 0;
@@ -91,17 +89,14 @@ const Nav = styled.div`
     border-bottom-right-radius: 25px;
 `;
 
-const BottomNavLinks= styled(BottomNav)`
-    position: relative;
-    top: -100px;
 
-`;
 
 
 class Device extends React.Component {
     render() {
 
         const type = deviceDimensions[this.props.type]; 
+        
 
         return (
             <>
@@ -114,16 +109,10 @@ class Device extends React.Component {
                        </Notch>
                    </StatusBar>
                    {this.props.children}
-                   <Nav>
-                   <BottomNavLinks>
-                    </BottomNavLinks>
-                   </Nav>
+                   <NavWrapper>
+                   </NavWrapper>
                 </Screen>
             </ScreenWrapper>
-
-            
-            
-
             </>
         );
     }

@@ -1,11 +1,12 @@
 import React from "react";
-import styled from "styled-components";
+import PropTypes from "prop-types";
 
+import styled from "styled-components";
 
 import Input from "../generic/Input";
 import Button from "../generic/Button";
 import ActionButton from "./ActionButton";
-import ActionButtonsContainer from "./ActionButtonsContainer";
+
 
 
 const InputContainer = styled.div`
@@ -19,6 +20,20 @@ const InputContainer = styled.div`
     position: relative;
     width: 85%;
 
+`;
+
+const ButtonWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 2.5rem;
+    top: -6.5rem; 
 `;
 
 
@@ -148,7 +163,7 @@ class TimerInputs extends React.Component {
             runHours: "00",
             runMinutes: "00",
             runSeconds: "00",
-            rounds: "00", 
+            rounds: 0, 
             restHours: "00",
             restMinutes: "00",
             restSeconds: "00",
@@ -213,7 +228,7 @@ class TimerInputs extends React.Component {
                  * Reset and conditional Start / Next button 
                  * depending on the timer type 
                  * ***************************************/}
-                    <ActionButtonsContainer top="-6.5rem">
+                    <ButtonWrapper>
                         <Button outline="2px solid #302F2F" 
                                         outlineOffset="2px" 
                                         onClick={this.handleGoBack}>
@@ -231,7 +246,7 @@ class TimerInputs extends React.Component {
                                             onKeyDown={this.handleResetInput}>
                                                 Next
                                 </ActionButton>}
-                    </ActionButtonsContainer>
+                    </ButtonWrapper>
                   
                 </div>
                   }
@@ -256,7 +271,7 @@ class TimerInputs extends React.Component {
                  * XY gets a "start" button; 
                  * Tabata gets a "next" button
                  * ******************************************/}
-                  <ActionButtonsContainer top="-6.5rem">
+                  <ButtonWrapper>
                     <Button outline="2px solid #302F2F" 
                                     outlineOffset="2px" 
                                     onClick={this.handleGoBack}>
@@ -272,7 +287,7 @@ class TimerInputs extends React.Component {
                                     onClick={this.handleRestInput}>
                                         Next
                         </ActionButton>}
-                </ActionButtonsContainer>
+                </ButtonWrapper>
                 </div>
                 }
 
@@ -302,7 +317,7 @@ class TimerInputs extends React.Component {
                 {/*******************************************
                  * Rest phase "go back" and "start" buttons
                  * ******************************************/}
-                  <ActionButtonsContainer top="-6.5rem">
+                  <ButtonWrapper>
                     <Button outline="2px solid #302F2F" 
                                     outlineOffset="2px" 
                                     onClick={this.handleGoBack}>
@@ -313,7 +328,7 @@ class TimerInputs extends React.Component {
                                  onClick={(e) => this.props.onClick(this.state.time)}>
                                  Start
                     </ActionButton> 
-                </ActionButtonsContainer>
+                </ButtonWrapper>
                 </div>
                 }   
                 </div>  
@@ -322,6 +337,16 @@ class TimerInputs extends React.Component {
      
     )
   }
+}
+
+TimerInputs.propTypes = {
+    timerType: PropTypes.oneOf(["Stopwatch", "Countdown", "XY", "Tabata"]), 
+    showInputs: PropTypes.bool
+}; 
+
+TimerInputs.defaultProps = {
+    timerType: "Stopwatch",
+    showInputs: false
 }
 
 export default TimerInputs;

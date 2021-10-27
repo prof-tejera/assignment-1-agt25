@@ -1,4 +1,6 @@
+import PropTypes from "prop-types";
 import styled from "styled-components";
+
 
 const defaultColors = {
    greyColor: "#302F2F",
@@ -8,13 +10,13 @@ const defaultColors = {
 
 
 const Button = styled.button`
-  disabled: ${(props) => props.disabled};
-  height: ${(props) => props.height};
-  width: ${(props) => props.width};
-  border-radius: ${(props) => props.radius};
+  border-radius: 50%;
+  border: ${(props) => props.border};
   background-color: ${(props) => props.background};
   color: ${(props) => props.color};
-  border: ${(props) => props.border};
+  disabled: ${(props) => props.disabled};
+  height: ${(props) => props.size};
+  width: ${(props) => props.size};
   font-size: ${(props) => props.fontSize};
   font-weight: ${(props) => props.fontWeight};
   outline: ${(props) => props.outline};
@@ -45,18 +47,36 @@ const Button = styled.button`
   }  
 `;
 
+
+Button.propTypes = {
+  border: PropTypes.string,
+  background: PropTypes.string, 
+  color: PropTypes.string,
+  disabled: PropTypes.bool,
+  fontSize: PropTypes.string,
+  fontWeight: PropTypes.number,
+  outline: PropTypes.string,
+  outlineOffset: PropTypes.string,
+  size: PropTypes.string,
+
+  
+
+}
+
 Button.defaultProps = {
-  height: "70px",
-  width: "70px",
-  radius: "50%",
+  border: "none",
   background: defaultColors.greyColor,
   color: defaultColors.greyText,
-  border: "none",
+  disabled: false,
   fontSize: "19px",
   fontWeight: 200,
   outline: defaultColors.greyColor,
   outlineOffset: "2px",
-  disabled: false,
+  size: "70px",
+  
+  
+  
+ 
 }
 
 export default Button;

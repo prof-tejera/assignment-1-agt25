@@ -29,6 +29,6 @@ ActionButton.propTypes = {
 ActionButton.defaultProps = {
     type: "Green",
     disabled: false,
-  }
+}
 
 export default ActionButton;
