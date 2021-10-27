@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import styled from "styled-components";
 
 import ProgressBar from "./ProgressBar";
@@ -9,6 +11,7 @@ import ProgressRate from "../../images/progress-rate.svg";
 import RunningIcon from "../../images/running-icon.svg";
 import StretchingIcon from "../../images/stretching-icon.svg";
 import RestingIcon from "../../images/resting-icon.svg";
+import TimerInputs from "./TimerInputs";
 
 
 const Container = styled.div`
@@ -67,7 +70,7 @@ const ProgressWrapper = styled.div`
     p {
         position: relative;
         top: -20px;
-        font-size: ${({action}) => action.includes("Press") ? "20px" : "22px"};  
+        font-size: ${({action}) => action.includes("Start New") ? "21px" : "22px"};  
     }
     div {
         position: relative;
@@ -87,14 +90,6 @@ const CircleWrapper = styled.div`
 
 class TimersScreen extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-          seconds: 0, 
-          
-        }
-      }
-    
     
     render() {
         const { hours, minutes, seconds, 
@@ -116,7 +111,8 @@ class TimersScreen extends React.Component {
                         {/* Left side: Conditional 'Rounds' status used by XY and TABATA */}
                         {type === "XY" || type === "Tabata" ? 
                             <CircleWrapper background="#1A1A1A">
-                                <ActionsCircle fontSize="50px">{rounds ? rounds : "0"}
+                                <ActionsCircle fontSize="50px">
+                                    <div>{rounds ? rounds : "0"}</div>
                                 </ActionsCircle> 
                              </CircleWrapper> : <CircleWrapper/> }
 
@@ -124,7 +120,7 @@ class TimersScreen extends React.Component {
                         <CircleWrapper background="#1A1A1A">
                             <ActionsCircle border="1px dotted #1C91F2"> 
                             {action === "Run" &&  <img src={RunningIcon} alt="Running Stick Figure"/>}
-                            {action === "Press New" && <img src={StretchingIcon} alt="Stretching Stick Figure"/>}
+                            {action === "Start New" && <img src={StretchingIcon} alt="Stretching Stick Figure"/>}
                             {action === "Rest" && <img src={RestingIcon} alt="Standing Stick Figure"/>}
                             </ActionsCircle>
                         </CircleWrapper>
@@ -134,7 +130,7 @@ class TimersScreen extends React.Component {
                     {/* Round timer wrapper and timer */}
                     <RoundTimerWrapper/>
                         <Time>
-                            {hours || "00"}: {minutes || "00"}: {seconds || "00"}
+                            {hours}: {minutes}: {seconds}
                         </Time>
 
 
@@ -153,5 +149,39 @@ class TimersScreen extends React.Component {
     }
 }
 
+TimersScreen.propTypes = {
+    action: PropTypes.string,
+    hours: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
+    minutes: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
+    seconds: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
+    rounds: PropTypes.number, 
+    progressPlaying: PropTypes.bool,
+    totalSeconds: PropTypes.number,
+   
+    
+    
+}
+
+TimerInputs.defaultProps = {
+    action: "Start New",
+    hours: "00",
+    minutes: "00",
+    seconds: "00", 
+    rounds: 0, 
+    progressPlaying: false,
+    totalSeconds: 0, 
+    
+    
+
+}
 export default TimersScreen;
 

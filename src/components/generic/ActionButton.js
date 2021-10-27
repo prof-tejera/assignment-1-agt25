@@ -22,7 +22,9 @@ const ActionButton = styled(Button)`
 
 ActionButton.propTypes = {
     type: PropTypes.oneOf(["Green", "Orange"]), 
-    disabled: PropTypes.bool.isRequired
+    disabled: PropTypes.bool.isRequired,
+    onClick: PropTypes.func,
+    onKeyDown: PropTypes.func,
 }
 
 

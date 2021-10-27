@@ -58,6 +58,7 @@ Button.propTypes = {
   outline: PropTypes.string,
   outlineOffset: PropTypes.string,
   size: PropTypes.string,
+  onClick: PropTypes.func,
 
   
 

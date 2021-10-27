@@ -59,7 +59,7 @@ class Timer extends React.Component {
       current: "run",
 
       // Status helpers
-      actionHelper: "Press New",
+      actionHelper: "Start New",
       actionBtn : "New",
       actionBtnDisabled: false,
       progressPlaying: false, 
@@ -138,7 +138,7 @@ class Timer extends React.Component {
         run: runObj,
         rest: restObj,
         rounds: 0, 
-        actionHelper: "Press New",
+        actionHelper: "Start New",
         actionBtn : "New",
         current: "run",
         actionBtnDisabled: false,
@@ -183,7 +183,7 @@ class Timer extends React.Component {
       
       // Action buttons 
       actionBtn: e.started ? "Pause" : "New",
-      actionHelper: e.started ? "Run" : "Press New",
+      actionHelper: e.started ? "Run" : "Start New",
 
       // Progress bar values
       totalSeconds: timeInSeconds(e.runHours, e.runMinutes, e.runSeconds),

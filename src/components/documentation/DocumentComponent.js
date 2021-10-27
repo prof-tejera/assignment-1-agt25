@@ -45,8 +45,8 @@ const Documentation = styled.table`
   height: 80%;
   margin: 2rem;
   border: none;
-  max-width: 50vw;
-  width: 40vw;
+  max-width: 45vw;
+  width: 45vw;
   color: ${colors.white};
   tr, th {
     border: 1px solid ${colors.lightGrey};

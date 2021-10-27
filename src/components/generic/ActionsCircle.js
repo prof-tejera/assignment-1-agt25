@@ -11,10 +11,17 @@ const ActionsCircle = styled.div`
     font-weight: ${(props) => props.fontWeight};
     height: ${(props) => props.size};
     width:  ${(props) => props.size};
-    padding: 0;
+    padding: auto;
     text-align: center;
     display: flex;
-    vertical-align:middle;
+    justify-content: center;
+    align-content: center;
+    margin: 0 auto;
+    div {
+      position: relative; 
+      top: 5px;
+      left: -2px;
+    }
     
     img {
       display: block;
