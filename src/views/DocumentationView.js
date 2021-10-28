@@ -18,6 +18,7 @@ import TimerScreen from "../components/generic/TimerScreen";
 
 import HeartRate from "../images/grey-heart-rate.svg";
 import RunningIcon from "../images/running-icon.svg";
+import FlowChart from "../images/flowchart.svg";
 
 
 const Container = styled.div`
@@ -28,16 +29,70 @@ const Container = styled.div`
   background: rgb(22,33,56);
   background: linear-gradient(180deg, #14161D 2%, rgba(18,18,18,1) 100%);
   color: white;
-  overflow: hidden;
+  overflow-x: hidden;
+
   
 `;
 
 const Title = styled.div`
-  font-size: 2rem;
-  padding: 2.5rem;
+  font-size: 2.2rem;
+  padding: 3rem;
+  margin-bottom: -2.2rem;
   width: 100vw;
+  img {
+    padding: 0.5rem;
+    margin-bottom: 0.7rem;
+    margin-top: -0.5rem;
+  }
+  h2 {
+    margin-top: -1rem;
+    font-size: 2rem !important;
+    color: #B5B1B2 !important;
+  }
+  
 `;
 
+const ArchitectureContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-bottom: 1.25rem;
+  border-top: 1px dotted #2B2F3BCF;
+  img {
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  div {
+    h2 {
+      font-size: 1.8rem;
+      letter-spacing: 0.2rem;
+      margin-top: 0.5rem;
+      padding: 1rem;
+      color: #588DE4;
+    }
+  }
+  article {
+    width: 50vw;
+    padding: 3rem;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #D9D9D9;
+    span {
+      color: #588DE4;
+      font-size: 1.3rem;
+    }
+    p {
+      line-height: 27px;
+    }
+
+  }
+  
+  
+  
+`;
 
 
 class Documentation extends React.Component {
@@ -46,8 +101,44 @@ class Documentation extends React.Component {
       <Container>
         <div>
           
-          <Title>Documentation</Title>
-          <img src={HeartRate} alt="hey"/>
+          <Title>Documentation
+            <div>
+              <img src={HeartRate} alt="Heartbeat Line"/>
+           
+            </div>
+          </Title>
+        
+          
+          <ArchitectureContainer>  
+            <div>
+          
+          
+          <img src={FlowChart} width="450px" alt="Heartbeat Line"/>
+            </div>
+          </ArchitectureContainer>
+
+          <ArchitectureContainer>
+          <article> 
+              <span>Component Architecture</span>
+              <p>
+              For the sake of "DRY", each timer — Stopwatch, Countdown, XY, Tabata — is composed of a generic timer component, a device, 
+              a timer screen, and timer inputs. 
+              </p>
+              <p>
+              Sure, the generic timer component is larger than its counterparts. 
+              However, all of the timers designed share common functionality — 
+              the common layout of various smaller components, 
+              click functions, input registration, and more or less the 
+              same state variables. I figured that repeating the same process 
+              across all of the timers would be redundant and a bad design. 
+              To make the maintenance of the larger components easier, 
+              I've included plentiful comments as a guide. 
+              </p> 
+            </article>
+          </ArchitectureContainer>
+          
+        
+
           <DocumentComponent
             title="Loading spinner "
             component={<Loading />}
@@ -368,7 +459,9 @@ class Documentation extends React.Component {
 
 
           
+          
         </div>
+         
       </Container>
     );
   }
