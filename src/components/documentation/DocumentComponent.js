@@ -11,7 +11,6 @@ const colors = {
 const Wrapper = styled.div`
   margin: 20px 0px;
   border-top: 1px dotted ${colors.darkGrey};
-  
 `;
 
 const Container = styled.div`
@@ -38,7 +37,6 @@ const RenderComponent = styled.div`
   display: flex;
   margin: 1rem;
   align-items: center;
-  
 `;
 
 const Documentation = styled.table`
@@ -54,7 +52,6 @@ const Documentation = styled.table`
   td {
     border: 1px solid ${colors.lightGrey};
   }
-
 `;
 
 class DocumentComponent extends React.Component {

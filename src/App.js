@@ -2,12 +2,14 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, NavLink, Redirect } from "react-router-dom";
 import styled from "styled-components";
 
+// Views 
 import DocumentationView from "./views/DocumentationView";
 import TimersView from "./views/TimersView";
 import DesignView from "./views/DesignView";
 
+// Vectors
 import Background from "./images/background.png";
-import Timer from "./components/generic/Timer";
+
 
 
 const Container = styled.div`
@@ -34,7 +36,6 @@ const Container = styled.div`
   a:hover {
     color: #C78233;
   };
-  
   h3 {
     font-family: Roboto;
     font-size: 23px;
@@ -42,7 +43,7 @@ const Container = styled.div`
     font-weight: 400;
     letter-spacing: 1px;
     margin-top: 9px;
-  } 
+  } ;
   h2 {
     font-family: Roboto;
     font-size: 35px;
@@ -50,7 +51,7 @@ const Container = styled.div`
     font-weight: 400;
     letter-spacing: 1px;
     margin-top: -4px;
-  }
+  };
 `;
 
 const StyledLink = styled(NavLink)`
@@ -79,32 +80,25 @@ function App() {
             <li>
               <StyledLink to="/docs">Documentation</StyledLink>
             </li>
-            
-            
-            
           </ul>
         </nav>
+
         <Switch>
-        <Route exact path="/">
-2           <Redirect to="/timers" />
-3         </Route>
+          <Route exact path="/">
+            <Redirect to="/timers" />
+          </Route>
           <Route exact path="/docs">
-            <DocumentationView />
+              <DocumentationView />
           </Route>
           <Route exact path="/timers">
-            <TimersView />
+              <TimersView />
           </Route>
           <Route exact path="/design">
-          <DesignView />
+            <DesignView />
           </Route>
-        
-          
         </Switch>
-      </Router>
- 
-       
+      </Router>      
     </Container>
-      
   );
 }
 

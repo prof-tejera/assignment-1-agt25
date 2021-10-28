@@ -1,14 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import styled from "styled-components";
 
+// Components 
 import Device from "./Device";
 import Button from "./Button";
 import TimerScreen from "./TimerScreen";
 import TimerInputs from "./TimerInputs";
 import ActionButton from "./ActionButton";
 
+// Helpers 
 import { timeInSeconds } from "../../utils/helpers";
 
 const ButtonsContainer = styled.div`
@@ -24,7 +25,6 @@ const ButtonsContainer = styled.div`
     margin-top: 2.5rem;
     top: -6.5rem;
 `;
-
 
 class Timer extends React.Component {
   constructor(props) {
@@ -70,14 +70,15 @@ class Timer extends React.Component {
       totalSeconds: 0, 
 
     }
-  }
+  };
 
 
-  /*************************************
-   * Toggles the action buttons 
-   * Options: "New", "Pause", and "Start"
-   *************************************/
+ 
   handleActionButton = () => {
+     /*************************************
+      * Toggles the action buttons 
+      * Options: "New", "Pause", and "Start"
+      *************************************/
     
     if (this.state.actionBtn === "New") {
       /* When the user starts a new timer,
@@ -89,8 +90,8 @@ class Timer extends React.Component {
       })
 
     } else if (this.state.actionBtn === "Pause") {
-      /* When the user has clicks 'Pause'
-         toggle the action button to say "Start";
+      /* When the user clicks 'Pause'
+         toggle the action button to say 'Start';
          then handle the Pause functionality */
       this.setState({
         actionBtn: "Start",
@@ -104,23 +105,22 @@ class Timer extends React.Component {
       this.setState({
         actionBtn: "Pause",
         progressPlaying: true
-        
       })
     }
   }
   
 
-
   handlePause = () => {
-    
+    // Function that freezes the current time displayed 
   }
 
 
-  /****************************************
-   * When the 'Reset' button gets clicked
-   * this resets the state values 
-   ****************************************/
+  
   handleReset = () => {
+    /****************************************
+      * When the 'Reset' button gets clicked
+      * reset the state values 
+    ****************************************/
     let runObj = { 
         ...this.state.run,
         runHours: "00",
@@ -133,7 +133,6 @@ class Timer extends React.Component {
         restMinutes: "00",
         restSeconds: "00",
     };
-
     this.setState({
         run: runObj,
         rest: restObj,
@@ -150,11 +149,12 @@ class Timer extends React.Component {
   }
 
 
-  /*******************************************
-   * After the user has enters timer inputs, 
-   * update the state to reflect the new values
-   * *****************************************/
+ 
   handleInputs = (e) => {
+     /*******************************************
+      * After the user has enters timer inputs, 
+      * update the state to reflect the new values
+      * *****************************************/
 
     // Compose the run and rest time objects 
     let runObj = { 
@@ -170,6 +170,7 @@ class Timer extends React.Component {
         restSeconds: e.restSeconds,
     };
 
+    // Update the state
     this.setState({
 
       // Component visibility 
@@ -260,8 +261,9 @@ class Timer extends React.Component {
 
     return (
       <div>
-        
+      {/* Device component */}
       <Device type="phone" currentTimer={timerType}>
+          {/* Timer screen */}
             {this.state.showTimer  && 
               <TimerScreen
                     showing={this.state.roundTimer} 
@@ -276,7 +278,7 @@ class Timer extends React.Component {
                     progressPlaying={this.state.progressPlaying}
                     /> }
                 
-          
+              {/* Timer screen buttons */}
               {this.state.showTimer && 
               <ButtonsContainer>
                   <Button outline="2px solid #302F2F" 
@@ -290,10 +292,12 @@ class Timer extends React.Component {
                                 {this.state.actionBtn}
                   </ActionButton>
               </ButtonsContainer>
-            } 
+            }
+
+            {/* Timer inputs */}
             {this.state.showInputs && 
             <TimerInputs type={timerType} showInputs={this.state.showInputs} onClick={this.handleInputs}/>}
-      </Device>    
+        </Device>    
       </div>
      
     )

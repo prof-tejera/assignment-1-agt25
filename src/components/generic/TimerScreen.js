@@ -7,7 +7,7 @@ import ProgressBar from "./ProgressBar";
 import ActionsCircle from "./ActionsCircle";
 
 import OperationsCircle from "../../images/operations-circle.svg";
-import ProgressRate from "../../images/progress-rate.svg";
+import ProgressRate from "../../images/blue-heart-rate.svg";
 import RunningIcon from "../../images/running-icon.svg";
 import StretchingIcon from "../../images/stretching-icon.svg";
 import RestingIcon from "../../images/resting-icon.svg";
@@ -88,6 +88,8 @@ const CircleWrapper = styled.div`
 `;
 
 
+
+
 class TimersScreen extends React.Component {
 
     
@@ -142,6 +144,7 @@ class TimersScreen extends React.Component {
                         <ProgressBar playing={progressPlaying} totalSeconds={totalSeconds}/>
                         </div>
                         <p>{action}</p>
+                      
                     </ProgressWrapper>               
                 </Container>   
             </>

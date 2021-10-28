@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import DocumentComponent from "../components/documentation/DocumentComponent";
-
 // Generic components 
+import DocumentComponent from "../components/documentation/DocumentComponent";
 import Loading from "../components/generic/Loading";
 import ActionButton from "../components/generic/ActionButton";
 import ActionsCircle from "../components/generic/ActionsCircle";
@@ -15,8 +14,8 @@ import Timer from "../components/generic/Timer";
 import TimerInputs from "../components/generic/TimerInputs";
 import TimerScreen from "../components/generic/TimerScreen";
 
-
-import HeartRate from "../images/progress-rate.svg";
+// Vectors 
+import HeartRate from "../images/blue-heart-rate.svg";
 import RunningIcon from "../images/running-icon.svg";
 import FlowChart from "../images/flowchart.svg";
 
@@ -31,8 +30,6 @@ const Container = styled.div`
   background: linear-gradient(180deg, #14161D 2%, rgba(18,18,18,1) 100%);
   color: white;
   overflow-x: hidden;
-
-  
 `;
 
 const Title = styled.div`
@@ -51,7 +48,6 @@ const Title = styled.div`
     font-size: 2rem !important;
     color: #B5B1B2 !important;
   }
-  
 `;
 
 const ArchitectureContainer = styled.div`
@@ -86,9 +82,7 @@ const ArchitectureContainer = styled.div`
     p {
       line-height: 27px;
     }
-
   }
-  
 `;
 
 
@@ -98,44 +92,52 @@ class Documentation extends React.Component {
       <Container>
         <div>
           
+          {/*********************
+           * Documentation title
+           * *******************/}
           <Title>Documentation
             <div>
-              
               <img src={HeartRate} width="225px" alt="Heartbeat Line"/>
-           
             </div>
           </Title>
         
-          
+          {/*********************
+           * Architecture layout 
+           * ********************/}
           <ArchitectureContainer>  
             <div>
-            <h2>Component Architecture </h2>
-          
-          <img src={FlowChart} width="450px" alt="Heartbeat Line"/>
+              <h2>Component Architecture </h2>
+              <img src={FlowChart} width="450px" alt="Flowchart of the components architecture"/>
             </div>
           </ArchitectureContainer>
 
+          {/**************************
+           * Architecture explanation 
+           * *************************/}
           <ArchitectureContainer>
-          <article>
-              <p>
-              For the sake of "DRY", each timer — Stopwatch, Countdown, XY, Tabata — is composed of a generic timer component, a device, 
-              a timer screen, and timer inputs. 
-              </p>
-              <p>
-              Sure, the generic timer component is larger than its counterparts. 
-              However, all of the timers designed share common functionality — 
-              the common layout of various smaller components, 
-              click functions, input registration, and more or less the 
-              same state variables. I figured that repeating the same process 
-              across all of the timers would be redundant and a bad design. 
-              To make the maintenance of the larger components easier, 
-              I've included plentiful comments as a guide. 
-              </p> 
+            <article>
+                <p>
+                  For the sake of DRY, each timer — Stopwatch, Countdown, XY, Tabata — 
+                  is composed of a generic timer component, a device, 
+                  a timer screen, and timer inputs. 
+                </p>
+                <p>
+                  Sure, the generic timer component is larger than its counterparts. 
+                  However, all of the timers designed share common functionality — 
+                  the common layout of various smaller components, 
+                  click functions, input registration, and more or less the 
+                  same state variables. I figured that repeating the same process 
+                  across all of the timers would be redundant and a bad design. 
+                  To make the maintenance of the larger components easier, 
+                  I've included plentiful comments as a guide. 
+                </p> 
             </article>
           </ArchitectureContainer>
           
         
-
+          {/***************************
+           * PropTypes start 
+           ***************************/}
           <DocumentComponent
             title="Loading spinner "
             component={<Loading />}
@@ -224,9 +226,9 @@ class Documentation extends React.Component {
                   type: "string",
                   defaultValue: `"70px"`,
                 },
-
             ]}
           />
+
           <DocumentComponent
             title="Button"
             component={<Button outline="2px solid #302F2F">Reset</Button>}
@@ -292,10 +294,9 @@ class Documentation extends React.Component {
                 type: `function`,
                 defaultValue: `none`,
               },
-             
-              
             ]}
           />
+
           <DocumentComponent
               title="Device"
               component={<Device/>}
@@ -306,9 +307,9 @@ class Documentation extends React.Component {
                   type: `string, oneOf(["phone", "tablet"])`,
                   defaultValue: "phone",
                 },
-  
             ]}
           />
+
           <DocumentComponent
               title="Input"
               component={<Input value="00"/>}
@@ -340,11 +341,6 @@ class Documentation extends React.Component {
                   type: `function`,
                   defaultValue: `none`,
                 },
-                
-
-                
-                
-  
             ]}
           />
 
@@ -367,6 +363,7 @@ class Documentation extends React.Component {
   
             ]}
           />
+
           <DocumentComponent
               title="Timer"
               component={<Timer/>}
@@ -380,7 +377,6 @@ class Documentation extends React.Component {
             ]}
           />
          
-
           <DocumentComponent
               title="Timer Inputs"
               component={<TimerInputs type="Countdown" showInputs={true}/>}
@@ -398,11 +394,9 @@ class Documentation extends React.Component {
                   type: `string, oneOf(["Stopwatch", "Countdown", "XY", "Tabata"])`,
                   defaultValue: "Stopwatch",
                 },
-  
             ]}
           />
          
-          
         <DocumentComponent
             title="Timer Screen"
             component={<TimerScreen hours="00" minutes="00" seconds="00" type="Stopwatch" action="Run"/>}
@@ -449,16 +443,9 @@ class Documentation extends React.Component {
                 type: "number",
                 defaultValue: `0`,
               },
-              
-              
             ]}
           />
-
-
-          
-          
         </div>
-         
       </Container>
     );
   }
