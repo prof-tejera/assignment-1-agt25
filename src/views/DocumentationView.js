@@ -16,9 +16,10 @@ import TimerInputs from "../components/generic/TimerInputs";
 import TimerScreen from "../components/generic/TimerScreen";
 
 
-import HeartRate from "../images/grey-heart-rate.svg";
+import HeartRate from "../images/progress-rate.svg";
 import RunningIcon from "../images/running-icon.svg";
 import FlowChart from "../images/flowchart.svg";
+
 
 
 const Container = styled.div`
@@ -39,10 +40,11 @@ const Title = styled.div`
   padding: 3rem;
   margin-bottom: -2.2rem;
   width: 100vw;
+  font-family: Open Sans;
   img {
     padding: 0.5rem;
     margin-bottom: 0.7rem;
-    margin-top: -0.5rem;
+    margin-top: -0.2rem;
   }
   h2 {
     margin-top: -1rem;
@@ -68,10 +70,11 @@ const ArchitectureContainer = styled.div`
   div {
     h2 {
       font-size: 1.8rem;
-      letter-spacing: 0.2rem;
-      margin-top: 0.5rem;
+      letter-spacing: 0.1rem;
+      margin-top: -2rem;
+      background: #14161C;
       padding: 1rem;
-      color: #588DE4;
+      color: #A6D3CA;
     }
   }
   article {
@@ -80,17 +83,11 @@ const ArchitectureContainer = styled.div`
     text-align: center;
     font-size: 1.1rem;
     color: #D9D9D9;
-    span {
-      color: #588DE4;
-      font-size: 1.3rem;
-    }
     p {
       line-height: 27px;
     }
 
   }
-  
-  
   
 `;
 
@@ -103,7 +100,8 @@ class Documentation extends React.Component {
           
           <Title>Documentation
             <div>
-              <img src={HeartRate} alt="Heartbeat Line"/>
+              
+              <img src={HeartRate} width="225px" alt="Heartbeat Line"/>
            
             </div>
           </Title>
@@ -111,15 +109,14 @@ class Documentation extends React.Component {
           
           <ArchitectureContainer>  
             <div>
-          
+            <h2>Component Architecture </h2>
           
           <img src={FlowChart} width="450px" alt="Heartbeat Line"/>
             </div>
           </ArchitectureContainer>
 
           <ArchitectureContainer>
-          <article> 
-              <span>Component Architecture</span>
+          <article>
               <p>
               For the sake of "DRY", each timer — Stopwatch, Countdown, XY, Tabata — is composed of a generic timer component, a device, 
               a timer screen, and timer inputs. 
