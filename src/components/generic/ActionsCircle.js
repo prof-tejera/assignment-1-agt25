@@ -32,7 +32,7 @@ const ActionsCircle = styled.div`
     }
 `;
 
-ActionsCircle.PropTypes = {
+ActionsCircle.propTypes = {
   border: PropTypes.string,
   background: PropTypes.string,
   color: PropTypes.string,

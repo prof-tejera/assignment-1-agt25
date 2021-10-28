@@ -102,7 +102,7 @@ Input.propTypes = {
         PropTypes.string,
         PropTypes.number
     ]),
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func
   };
 
 Input.defaultProps = {

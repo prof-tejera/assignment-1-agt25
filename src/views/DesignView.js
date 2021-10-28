@@ -400,9 +400,7 @@ class DesignView extends Component {
                 For a pleasing interface, I’ve avoided high contrast shades.
                 <br></br>
               </p>
-              <p>
-                <h3>All of the foreground / background combinations used are WCAG AA compliant.</h3> 
-              </p>
+              <h3>All of the foreground / background combinations used are WCAG AA compliant.</h3> 
             </article>
           </div>
         </Explanation>

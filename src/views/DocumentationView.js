@@ -440,7 +440,7 @@ class Documentation extends React.Component {
               {
                 prop: "totalSeconds",
                 description: `Controls the animation time of the progress bar on the screen`,
-                type: "number",
+                type: "string || number",
                 defaultValue: `0`,
               },
             ]}

@@ -58,8 +58,8 @@ ProgressBar.propTypes = {
   };
 
 
-ProgressBar.propTypes = {
-    totalSeconds: 0, 
+ProgressBar.defaultProps = {
+    total: 0, 
     playing: false
 }
 

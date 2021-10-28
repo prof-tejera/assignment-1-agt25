@@ -168,9 +168,15 @@ TimersScreen.propTypes = {
         PropTypes.string,
         PropTypes.number
     ]),
-    rounds: PropTypes.number, 
+    rounds: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]), 
     progressPlaying: PropTypes.bool,
-    totalSeconds: PropTypes.number,
+    totalSeconds: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]), 
    
     
     
