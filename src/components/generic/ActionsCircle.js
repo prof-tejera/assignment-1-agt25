@@ -21,8 +21,7 @@ const ActionsCircle = styled.div`
       position: relative; 
       top: 5px;
       left: -2px;
-    }
-    
+    };
     img {
       display: block;
       margin: 0 auto;

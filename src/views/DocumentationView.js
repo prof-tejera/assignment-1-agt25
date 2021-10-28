@@ -312,7 +312,10 @@ class Documentation extends React.Component {
 
           <DocumentComponent
               title="Input"
-              component={<Input value="00"/>}
+              component={<Input value="00" 
+              onChange={(e) => console.log(`Your input cannot register
+              in the document component. 
+              The input field needs a component that has state variables`)}/>}
               propDocs={[
                 {
                   prop: "value",
@@ -379,7 +382,9 @@ class Documentation extends React.Component {
          
           <DocumentComponent
               title="Timer Inputs"
-              component={<TimerInputs type="Countdown" showInputs={true}/>}
+              component={<TimerInputs onClick={(e) => console.log("Timer Inputs clicked!")} 
+                                      type="Countdown" 
+                                      showInputs={true}/>}
               propDocs={[
                 {
                   prop: "showInputs",

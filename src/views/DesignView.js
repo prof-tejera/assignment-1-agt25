@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import ActionsCircle from '../components/generic/ActionsCircle';
 import HeartRate from "../images/grey-heart-rate.svg";
 
+import Theme from "../utils/theme";
+
 
 const Container = styled.div`
   display: flex;
@@ -145,6 +147,15 @@ const Explanation = styled.div`
     color: #302F2F !important;
     padding: 2.5rem 0 1rem 0;
   }
+`;
+
+const UIExplainedHeader = styled(Explanation)`
+  border-top: 1px dashed ${Theme.light2};
+  line-height: 50px;
+  margin-bottom: -3rem;
+`;
+
+const UIExplained = styled(Explanation)`
 `;
 
 
@@ -404,6 +415,72 @@ class DesignView extends Component {
             </article>
           </div>
         </Explanation>
+
+        <UIExplainedHeader>
+          <div>
+          <RobotoH1>UX / UI Placement</RobotoH1>
+           <RobotoH3>* * * * *</RobotoH3>
+           </div>
+        </UIExplainedHeader>
+
+        <UIExplained>
+          <div>
+            <h2>the interface explained</h2>
+            <article>
+              <p>
+              Most notably, a round circle encapsulates the Timer Screen component. 
+              The circle, especially when paired with the top-right-side 'helper action icon', 
+              and the top-left-side 'current rounds' area, help resemble a physical stopwatch device.
+              </p>
+              <p>
+                The progress bar, a heartbeat line that is part of the brand identity, 
+                helps cement the notion the app's purpose, beyond having just timer functionality, is a fitness app. 
+                Stopwatches and countdowns are used for all purposes. 
+                Thus, I tried to incorporate elements, like the running or resting stick figure icon, 
+                that <i> scream </i> fitness.
+              </p>
+            </article>
+           </div>
+        </UIExplained>
+
+        <UIExplained>
+          <div>
+            <h2>the user experience</h2>
+            <article>
+              <p>
+                To help the user focus on the most important detail, I reserved the boldest, 
+                largest heading for the actual time. Your eyes immediately focus on the largest
+                element. Exercising can be messy. Focusing on the minutia of the UI, 
+                when your only objective is to keep exercising, 
+                is not ideal. 
+              </p>
+              <p>
+                During a timer activity, a user is most concerned with the time and the actual on-going activity.
+                The helper icon, a resting or running stick figure, guides the user. 
+                Helper text ("Run", "Rest", or "Start New") also serves to direct the user. 
+              </p>
+              <p>
+                  The actions buttons are in proximity to the focal point of the app, the time.
+                  There's enough top padding that the two areas appear separated, but still 
+                  easily accessibly.
+              </p> 
+              <h3>coming soon.</h3>
+              <p>
+                  Notably, there's a bit more bottom padding below the actions buttons than there is at the top.
+                  As we work on the functionality of the app, 
+                  I plan to optionally do a history log component below, similar to that on the iPhone, for XY and Tabata.
+                  For the sake of uniformity, I've placed the buttons on the same position for all of the timers. 
+                  There's enough space for a history component for the two timers, without it appearing "empty" on the Stopwatch
+                  and Countdown component. 
+              </p>
+              <p>
+                  I also plan on adding a functioning nav-bar inside the grey div at the bottom of the screen. 
+                  But because the directions ask for all the timers to be rendered on the TmersView, 
+                  I abstained from implementing it at this point.
+              </p>
+            </article>
+           </div>
+        </UIExplained>
       </>
     )
   }

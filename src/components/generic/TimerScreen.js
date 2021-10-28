@@ -75,16 +75,15 @@ const ProgressWrapper = styled.div`
         background-position: 0;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        animation: shine 5s linear;
+        animation: shine ${({action}) => action.includes("Start New") ?  "5s linear 4" : "5s linear" };
         animation-fill-mode: forwards;
         -webkit-text-size-adjust: none;
-        font-weight: 400;
-        font-size: 16px;
+        font-weight: 300;
         text-decoration: none;
         white-space: nowrap;
         position: relative;
         top: -20px;
-        font-size: ${({action}) => action.includes("Start New") ? "21px" : "22px"};  
+        font-size: ${({action}) => action.includes("Start New") ? "21px" : "23px"};  
         @-moz-keyframes shine {
             0% {
               background-position: 0;
@@ -133,7 +132,7 @@ const ProgressWrapper = styled.div`
     div {
         position: relative;
         top: -7.5px;
-    }
+    };
 `;
 
 
@@ -142,9 +141,7 @@ const CircleWrapper = styled.div`
     width: 75px;
     height: 75px;
     background: ${(props) => props.background || "transparent"};
-
 `;
-
 
 
 
