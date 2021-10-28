@@ -247,7 +247,7 @@ class DesignView extends Component {
          **************************/}
          <RobotoH3>Greys</RobotoH3>
          <GreysContainer>
-            <ActionsCircle background="FFFFFF" border="1px solid grey" size="45px"/>  
+            <ActionsCircle background="#FFFFFF" size="45px"/>  
               <div>light1
                 <br></br>
                 <span>#FFFFFF</span>

@@ -57,11 +57,11 @@ const TimerTitle = styled.h1`
 
 
 class TimersView extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       fontsLoaded: false,
-      activeComponent: "Stopwatch"
+      activeComponent: "Stopwatch",
     }
   }
   componentDidMount() {

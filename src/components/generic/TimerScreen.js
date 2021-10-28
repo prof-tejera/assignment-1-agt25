@@ -70,10 +70,66 @@ const ProgressWrapper = styled.div`
     top: -197px;
     left: 1px;
     p {
+        color: #ffffff;
+        background: linear-gradient(to right,  #AFCDD2D6 0, #9AB4EA 10%, #588DE4 20%);
+        background-position: 0;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shine 5s linear;
+        animation-fill-mode: forwards;
+        -webkit-text-size-adjust: none;
+        font-weight: 400;
+        font-size: 16px;
+        text-decoration: none;
+        white-space: nowrap;
         position: relative;
         top: -20px;
         font-size: ${({action}) => action.includes("Start New") ? "21px" : "22px"};  
-    }
+        @-moz-keyframes shine {
+            0% {
+              background-position: 0;
+            }
+            60% {
+              background-position: 180px;
+            }
+            100% {
+              background-position: 180px;
+            }
+          };
+          @-webkit-keyframes shine {
+            0% {
+              background-position: 0;
+            }
+            60% {
+              background-position: 180px;
+            }
+            100% {
+              background-position: 180px;
+            }
+          };
+          @-o-keyframes shine {
+            0% {
+              background-position: 0;
+            }
+            60% {
+              background-position: 180px;
+            }
+            100% {
+              background-position: 180px;
+            }
+          };
+          @keyframes shine {
+            0% {
+              background-position: 0;
+            }
+            60% {
+              background-position: 180px;
+            }
+            100% {
+              background-position: 180px;
+            }
+          };
+    };
     div {
         position: relative;
         top: -7.5px;
