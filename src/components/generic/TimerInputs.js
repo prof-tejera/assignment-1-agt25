@@ -1,12 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import styled from "styled-components";
 
 import Input from "../generic/Input";
 import Button from "../generic/Button";
 import ActionButton from "./ActionButton";
-
 
 
 const InputContainer = styled.div`
@@ -78,6 +76,10 @@ class TimerInputs extends React.Component {
    ***************************************************************/
 
   handleTimeInput = (e) => {
+
+    /************************************************
+     * Handles both the run and rest time inputs
+     ************************************************/
       
     // Save number input and id 
     let num = parseInt(e.value);
@@ -119,15 +121,16 @@ class TimerInputs extends React.Component {
                              this.state.time.restSeconds > 0 ? true : false,
             })
         }
-        
     });
-    
-    
-    
   }
 
 
   handleRoundInput = (e) => {
+
+    /*********************************************
+     * Handles a round input by updating the state,
+     * and enabling the "start" or "next" button 
+     **********************************************/
     let id = e.id;
     let num = parseInt(e.value); 
     this.setState({
@@ -146,7 +149,7 @@ class TimerInputs extends React.Component {
 
   
   handleRestInput = (e) => {
-
+    // Handles the rest input 
     this.setState({
         roundsPhase: false,
         restTimePhase: true,
@@ -156,7 +159,12 @@ class TimerInputs extends React.Component {
 
   
   handleGoBack() {
-      // If the current state is runTimePhase, reset the state for empty Timer Screen
+
+    /*****************************************************************
+     * Returns the previous page autofilled with the saved inputs 
+     ****************************************************************/
+
+    // If the current state is runTimePhase, reset the state for empty Timer Screen
     if (this.state.runTimePhase) {
         let resetTimeObj = {
             ...this.state.time, 
@@ -176,22 +184,24 @@ class TimerInputs extends React.Component {
             restEnabled: false,
             
         }, function() {
-            
+            // Return the empty object to the timer screen 
             this.props.onClick(this.state.time, this.state.time.started);
         })
         
     } else if (this.state.roundsPhase) {
+        // If the current page is the "rounds" page, take user back to "run"
         this.setState({
             runTimePhase: true,
             roundsPhase: false,
         })
     } else if (this.state.restTimePhase) {
+        // If the current page is the "rest" page, take user back to "rounds"
         this.setState({
             roundsPhase: true,
             restTimePhase: false,
         })
     }
-  }
+  };
 
 
   render() {
@@ -337,7 +347,7 @@ class TimerInputs extends React.Component {
      
     )
   }
-}
+};
 
 TimerInputs.propTypes = {
     timerType: PropTypes.oneOf(["Stopwatch", "Countdown", "XY", "Tabata"]), 
@@ -347,7 +357,7 @@ TimerInputs.propTypes = {
 TimerInputs.defaultProps = {
     timerType: "Stopwatch",
     showInputs: false
-}
+};
 
 export default TimerInputs;
 

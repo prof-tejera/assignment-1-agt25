@@ -2,16 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+
+
 const deviceDimensions = {
     phone: {
         width: 320,
         height: 620,
     }, 
     tablet: {
-        width: 420,
-        height: 640,
+        width: 355,
+        height: 655,
     },
-    
 };
 
 
@@ -88,8 +89,6 @@ const NavWrapper = styled.div`
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
 `;
-
-
 
 
 class Device extends React.Component {

@@ -75,6 +75,7 @@ class Timer extends React.Component {
 
  
   handleActionButton = () => {
+
      /*************************************
       * Toggles the action buttons 
       * Options: "New", "Pause", and "Start"
@@ -117,10 +118,12 @@ class Timer extends React.Component {
 
   
   handleReset = () => {
+
     /****************************************
       * When the 'Reset' button gets clicked
       * reset the state values 
     ****************************************/
+
     let runObj = { 
         ...this.state.run,
         runHours: "00",
@@ -151,6 +154,7 @@ class Timer extends React.Component {
 
  
   handleInputs = (e) => {
+
      /*******************************************
       * After the user has enters timer inputs, 
       * update the state to reflect the new values
@@ -194,65 +198,74 @@ class Timer extends React.Component {
       timerStarted: e.started,
 
     }, function() {
-        // After setting the state, call handleRun 
-        console.log(this.state);
+        // After setting the state, call handleTimer 
         if (this.state.timerStarted) {
             this.handleTimer();
         }
     })
-    
-    // if timerState is true, call the countUp function 
-    // if user clicks pause, freeze the current time 
-    // if timerType is stopwatch or countdown, or call handleRun
-    // if type is XY, call handleXY -> which calls handleRun in a loop
-    // if timerType is Tabata, call handleRun, then set to rest, etc. 
-    
-    
   };
 
-  handleStopwatch = (runTime) => {
-    let {runHours, runMinutes, runSeconds } = runTime; 
-    console.log(runHours, runMinutes, runSeconds);
-    // convert the runTime to seconds, call it target
-    // start timeElapsed at 0
-    // set a counter while 0 < target
-        // each iteration, set the state + 1
-        // if seconds are 59, set seconds to 0, and minute to +1
-        // if minutes are 59 and seconds are 59, set hour to +1
-
-  };
-
-  handleCountdown = (runTime) => {
-    let {runHours, runMinutes, runSeconds } = runTime; 
-    console.log(runHours, runMinutes, runSeconds);
-  };
-
-  handleXY = (runTime, rounds) => {
-    let { runHours, runMinutes, runSeconds } = runTime; 
-    console.log(runHours, runMinutes, runSeconds, rounds);
-    // calls handleCountdown in a loop 
-
-  };
-
-  handleTabata = (runTime, rounds, restTime) => {
-    let { runHours, runMinutes, runSeconds } = runTime; 
-    let { restHours, restMinutes, restSeconds } = restTime; 
-    // call handleCountdown in a loop for runTime
-    // then for restTime
-  }
 
   handleTimer = () => {
+
+    /******************************************************
+     * Calls the appropriate method based on the timer type 
+     ****************************************************/
+
     if (this.state.timerType === "Stopwatch") {
         this.handleStopwatch(this.state.run);
     } else if (this.state.timerType === "Countdown") {
         this.handleCountdown(this.state.run); 
     } else if (this.state.timerType === "XY") {
-        // call the XY function which calls countdown an X amount of times
+        this.handleXY(this.state.run, this.state.rounds)
     } else {
-        // call tabata which counts down an X amount of times and rests 
+        this.handleTabata(this.state.run, this.state.rest, this.state.rounds)
     }
   }
-  
+
+
+  handleStopwatch = (runTime) => {
+
+    /*****************************
+     * Will count up to the target;
+     * 1. start at 0
+     * 1. convert the runTime into seconds using the helper function
+     * 2. updates the state of the time object displaying every second
+     * 3. stops interval when the state obj matches the argument runTime
+    *******************************/
+  };
+
+  handleCountdown = (runTime) => {
+
+     /*****************************
+     * Will count down to the target;
+     * 1. convert the runTime into seconds using the helper function
+     * 2. starts at the total seconds 
+     * 2. updates the state of the time object displaying every second
+     * 3. stops interval at 0. 
+     */
+    
+  };
+
+  handleXY = (runTime, rounds) => {
+
+    /*************************
+     * Calls handleCountdown in a loop 
+     * the iterations depend on the rounds input
+     * ************************/
+
+  };
+
+  handleTabata = (runTime, rounds, restTime) => {
+
+    /*************************
+     * Calls handleCountdown in a loop 
+     * for both runTime and restTime
+     * the iterations depend on the rounds input
+     * ************************/
+  };
+
+
   render() {
     const timerType = this.state.timerType;
     const { runHours, runMinutes, runSeconds } = this.state.run; 
@@ -302,17 +315,17 @@ class Timer extends React.Component {
      
     )
   }
-}
+};
 
 
 
 Timer.propTypes = {
     timerType: PropTypes.oneOf(["Stopwatch", "Countdown", "XY", "Tabata"])
-}
+};
 
 Timer.defaultProps = {
     timerType: "Stopwatch"
-}
+};
 
 
 export default Timer; 

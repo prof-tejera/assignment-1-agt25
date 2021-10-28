@@ -11,7 +11,6 @@ import DesignView from "./views/DesignView";
 import Background from "./images/background.png";
 
 
-
 const Container = styled.div`
   background-image: url(${Background});
   background-repeat: none;

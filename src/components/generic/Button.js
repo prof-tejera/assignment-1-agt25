@@ -2,12 +2,12 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 
+
 const defaultColors = {
-   greyColor: "#302F2F",
-   greyText: "#C1BEBE",
+   dark3: "#302F2F",
+   light2: "#C1BEBE",
    disabledText: "#A09D9D"
 }
-
 
 const Button = styled.button`
   border-radius: 50%;
@@ -27,9 +27,9 @@ const Button = styled.button`
   font-family: Open Sans;
 
   :disabled {
-    background: ${defaultColors.greyColor};
+    background: ${defaultColors.dark3};
     color: ${defaultColors.disabledText};
-    outline: 2px solid ${defaultColors.greyColor};
+    outline: 2px solid ${defaultColors.dark3};
   }
     :hover {
       border: 1px solid #1B457929;
@@ -59,25 +59,20 @@ Button.propTypes = {
   outlineOffset: PropTypes.string,
   size: PropTypes.string,
   onClick: PropTypes.func,
-
   
-
-}
+};
 
 Button.defaultProps = {
   border: "none",
-  background: defaultColors.greyColor,
-  color: defaultColors.greyText,
+  background: defaultColors.dark3,
+  color: defaultColors.light2,
   disabled: false,
   fontSize: "19px",
   fontWeight: 200,
-  outline: defaultColors.greyColor,
+  outline: defaultColors.dark3,
   outlineOffset: "2px",
   size: "70px",
-  
-  
-  
- 
-}
+
+};
 
 export default Button;

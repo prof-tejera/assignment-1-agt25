@@ -13,6 +13,8 @@ import StretchingIcon from "../../images/stretching-icon.svg";
 import RestingIcon from "../../images/resting-icon.svg";
 import TimerInputs from "./TimerInputs";
 
+import Theme from "../../utils/theme";
+
 
 const Container = styled.div`
     height: 65%;
@@ -112,14 +114,14 @@ class TimersScreen extends React.Component {
 
                         {/* Left side: Conditional 'Rounds' status used by XY and TABATA */}
                         {type === "XY" || type === "Tabata" ? 
-                            <CircleWrapper background="#1A1A1A">
+                            <CircleWrapper background={Theme.dark1}>
                                 <ActionsCircle fontSize="50px">
                                     <div>{rounds ? rounds : "0"}</div>
                                 </ActionsCircle> 
                              </CircleWrapper> : <CircleWrapper/> }
 
                         {/* Right side: Icon status used by all timers */}
-                        <CircleWrapper background="#1A1A1A">
+                        <CircleWrapper background={Theme.dark1}>
                             <ActionsCircle border="1px dotted #1C91F2"> 
                             {action === "Run" &&  <img src={RunningIcon} alt="Running Stick Figure"/>}
                             {action === "Start New" && <img src={StretchingIcon} alt="Stretching Stick Figure"/>}
