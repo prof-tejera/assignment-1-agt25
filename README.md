@@ -1,5 +1,11 @@
 # Assignment 1
 
+# [Timers](https://main.dl0htvvzsa4cr.amplifyapp.com/timers)
+
+## Some Notes
+A professor of mine writes Javascript comments in this doc-string-like format `/************/`. I know they can take up a lot of space. But I have astigmatism and they really help me out! My eyes don't struggle looking for the comments or feel like they’re hidden. I hope you don’t mind. If it’s considered bad design, please let me know!
+ 
+
 ## Objective
 
 For Assignment 1 (A1) we are going to be building a component libary that we can use for future assignments. Our main goal is to layout the components that will be composed together to create our final bigger components. We will focus on composition, component interfaces, and styling. We aren't going to focus on functionality quite yet and at first our components will be very static.
@@ -25,9 +31,6 @@ Our larger components are going to be `Stopwatch`, `Countdown`, `XY`, and `TABAT
 4. Document all of the generic components you have created. In order to do this navigate to `src/view/Documentation` and add your components 1 by 1 with documentation of all props. We have provided an example loading spinner that you can follow.
 5. Deploy your application using any method you like (we will provide instructions for GH actions): [Timers](https://main.dl0htvvzsa4cr.amplifyapp.com/timers )
 
-## Some Notes
-A professor of mine does javascript comment in this doc-string like format /************/. I know they can take up a lot of space. But I have astigmatism and they really help me out! I don’t miss out the comments or feel like they’re hidden. I hope you don’t mind. If it’s considered bad design, please let me know!
- 
 
 ## Grading rubric
 
