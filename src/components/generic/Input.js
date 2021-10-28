@@ -7,7 +7,7 @@ import {Row} from "react-bootstrap";
 
 const InputField = styled.input`
   z-index: 1; 
-  height: ${(props) => props.height || "70px"};
+  height: ${(props) => props.height || "80px"};
   width: ${(props) => props.width || "70px"};
   background-color: ${(props) => props.background || "#302F2F"};
   color: ${(props) => props.color || "#C1BEBE"};
@@ -17,16 +17,13 @@ const InputField = styled.input`
   outline: ${(props) => props.outline || "none"};
   outline-offset: ${(props) => props.outlineOffset || "none"};
   text-align: center;
-  padding: 0;
+  text-align: -webkit-center !important;
   margin: 0 auto;
   font-family: league-gothic;
   letter-spacing: 4px;
   margin: 0.4rem;
-    ::-webkit-outer-spin-button,
-    ::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-    }
+  line-height: 1 !important;
+  
   
 `;
 
@@ -37,6 +34,12 @@ const InputWrapper = styled.div`
     align-self: auto;
     order: 0;
     z-index: 1; 
+    input {
+        text-align: center !important;
+    }
+    
+    
+    
 `;
 
 const Container = styled.div`
@@ -49,6 +52,8 @@ const Container = styled.div`
     margin: 0.5rem 0 2rem 0;
 
 `;
+
+
 
 
 

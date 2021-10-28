@@ -36,21 +36,22 @@ const Container = styled.div`
     color: #C78233;
   };
   h3 {
-    font-family: Roboto;
+    font-family: Roboto !important;
     font-size: 23px;
     color: white;
     font-weight: 400;
     letter-spacing: 1px;
     margin-top: 9px;
-  } ;
+  };
   h2 {
-    font-family: Roboto;
+    font-family: Roboto !important;
     font-size: 35px;
     color: white;
     font-weight: 400;
     letter-spacing: 1px;
     margin-top: -4px;
   };
+  
 `;
 
 const StyledLink = styled(NavLink)`

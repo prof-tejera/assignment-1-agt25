@@ -22,7 +22,6 @@ const ProgressDiv = styled.div`
     background-color: #95CF637F;
     animation: progressAnimation ${({seconds}) => seconds ? `${seconds}s` : "0"};
     animation-play-state: ${({playing}) => playing ? "running" : "paused"};
-
     @keyframes progressAnimation {
         0% {
           width: 0%;
@@ -49,18 +48,21 @@ class ProgressBar extends React.Component {
       </>
     );
   }
-}
+};
 
 
 ProgressBar.propTypes = {
-    totalSeconds: PropTypes.number,
+    totalSeconds: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]),
     playing: PropTypes.bool, 
-  };
+};
 
 
 ProgressBar.defaultProps = {
     total: 0, 
     playing: false
-}
+};
 
 export default ProgressBar;

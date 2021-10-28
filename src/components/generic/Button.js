@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 
-
 const defaultColors = {
    dark3: "#302F2F",
    light2: "#C1BEBE",
@@ -25,7 +24,8 @@ const Button = styled.button`
   padding: 0;
   margin: 0 auto;
   font-family: Open Sans;
-
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
   :disabled {
     background: ${defaultColors.dark3};
     color: ${defaultColors.disabledText};

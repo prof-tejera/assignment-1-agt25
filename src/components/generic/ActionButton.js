@@ -11,7 +11,7 @@ const ActionButton = styled(Button)`
     color: ${(props) => props.type === "Green" ? Theme.accent1 : Theme.accent2};
     background: ${(props) => props.type === "Green" ? Theme.neutral1 : Theme.neutral2};
     outline: ${(props) => props.type === "Green" ? `2px solid ${Theme.neutral1}` : `2px solid ${Theme.neutral2}`};  
-`;
+    `;
 
 
 ActionButton.propTypes = {

@@ -360,7 +360,7 @@ class Documentation extends React.Component {
                 {
                   prop: "totalSeconds",
                   description: "Controls the animation play time",
-                  type: "number",
+                  type: "number || string",
                   defaultValue: "0",
                 },
   

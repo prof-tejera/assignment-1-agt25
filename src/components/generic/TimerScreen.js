@@ -131,7 +131,7 @@ const ProgressWrapper = styled.div`
     };
     div {
         position: relative;
-        top: -7.5px;
+        top: -8.2px;
     };
 `;
 

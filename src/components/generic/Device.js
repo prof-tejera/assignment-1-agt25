@@ -29,8 +29,8 @@ const Screen = styled.div`
    height: ${(props) => props.height}px;
    border: 16px ridge #09090A;
    border-radius: 40px;
-   -webkit-box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.33); 
-   box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.33); 
+   -webkit-box-shadow: outset 0px 0px 2px 1px rgba(0,0,0,0.33); 
+   box-shadow: outset 0px 0px 2px 1px rgba(0,0,0,0.33); 
 `;
 
 const StatusBar = styled.div`
