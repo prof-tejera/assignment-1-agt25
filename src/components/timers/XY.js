@@ -1,9 +1,16 @@
-import React from "react";
+import React, { Component } from 'react';
+import Timer from "../generic/Timer";
 
-class XY extends React.Component {
+
+
+class XY extends Component {
   render() {
-    return null;
+    return (
+      <>
+        <Timer timerType="XY"/>
+      </>
+    )
   }
 }
 
-export default XY;
+export default XY; 

@@ -1,9 +1,16 @@
-import React from "react";
+import React, { Component } from 'react';
+import Timer from "../generic/Timer";
 
-class Stopwatch extends React.Component {
+
+
+class Stopwatch extends Component {
   render() {
-    return null;
+    return (
+      <>
+        <Timer timerType="Stopwatch"/>
+      </>
+    )
   }
 }
 
-export default Stopwatch;
+export default Stopwatch; 

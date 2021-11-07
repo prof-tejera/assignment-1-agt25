@@ -1,9 +1,16 @@
-import React from "react";
+import React, { Component } from 'react';
+import Timer from "../generic/Timer";
 
-class Countdown extends React.Component {
+
+
+class Countdown extends Component {
   render() {
-    return null;
+    return (
+      <>
+        <Timer timerType="Countdown"/>
+      </>
+    )
   }
 }
 
-export default Countdown;
+export default Countdown; 

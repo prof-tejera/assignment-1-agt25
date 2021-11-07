@@ -1,5 +1,11 @@
 # Assignment 1
 
+# [Timers](https://main.dl0htvvzsa4cr.amplifyapp.com/timers)
+
+## Some Notes
+A professor of mine writes Javascript comments in this doc-string-like format `/************/`. I know they can take up a lot of space. But I have astigmatism and they really help me out! My eyes don't struggle looking for the comments or feel like they’re hidden. I hope you don’t mind. If it’s considered bad design, please let me know!
+ 
+
 ## Objective
 
 For Assignment 1 (A1) we are going to be building a component libary that we can use for future assignments. Our main goal is to layout the components that will be composed together to create our final bigger components. We will focus on composition, component interfaces, and styling. We aren't going to focus on functionality quite yet and at first our components will be very static.
@@ -23,20 +29,8 @@ Our larger components are going to be `Stopwatch`, `Countdown`, `XY`, and `TABAT
 2. Assemble your timers using the generic component library you have created. All timers should render at `localhost:3000`.
 3. Style your components in a way that they are consistent and look presentable. Do not use an existing UI design library (e.g. Google's Material UI or Antd), instead try to come up with your own. **You are welcome to search the internet for design inspiration, but make sure to cite all resources you have used.**
 4. Document all of the generic components you have created. In order to do this navigate to `src/view/Documentation` and add your components 1 by 1 with documentation of all props. We have provided an example loading spinner that you can follow.
-5. Deploy your application using any method you like (we will provide instructions for GH actions): **URL_TO_APP**
+5. Deploy your application using any method you like (we will provide instructions for GH actions): [Timers](https://main.dl0htvvzsa4cr.amplifyapp.com/timers )
 
-### Deployment Instructions (GH actions)
-
-- Go to `Settings`
-- Go to `Pages`
-- in `Source`, select `gh-pages` branch
-- Click Save
-- In `package.json`, add a new key/value as: `"homepage": "https://prof-tejera.github.io/<YOUR REPO NAME GOES HERE>"`
-
-Once the `build-deploy` action finishes running, the app should be live
-at `https://prof-tejera.github.io/<YOUR REPO NAME GOES HERE>`
-
-For other ways to deploy see https://github.com/prof-tejera/react-deployment-code
 
 ## Grading rubric
 
